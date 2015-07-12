@@ -21,7 +21,8 @@ a [Sails](http://sailsjs.org) application
 
 As described at `/config/routes.js`:
 
-* `get /login`: views/login
+* `get /signup`: views/signup.ejs
+* `get /login`: views/login.ejs
 * `post /login`: AuthController.login
 * `/logout`: AuthController.logout
 
