@@ -21,10 +21,10 @@ a [Sails](http://sailsjs.org) application
 
 As described at `/config/routes.js`:
 
-* `get /signup`: views/signup.ejs
-* `get /login`: views/login.ejs
-* `post /login`: AuthController.login
-* `/logout`: AuthController.logout
+* `get /signup`: Load view at `/views/signup.ejs`
+* `get /login`: Load view at `/views/login.ejs`
+* `post /login`: Execute method `login` from `/api/controllers/AuthController`
+* `/logout`: Execute method `logout` from `/api/controllers/AuthController`
 
 ## Permissions (Policies)
 
