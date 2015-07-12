@@ -37,3 +37,10 @@ Policies located at `/api/policies`.
 Authentication is performed with [Passport](http://passportjs.org/) and [passport-local](https://github.com/jaredhanson/passport-local).
 
 Middleware configuration at `/config/http.js` and `/config/passport.js`.
+
+## TODO:
+
+* Implement `/api/policies/isYou.js` for preventing users access to other users.
+* Implement `/api/policies/isAuthor.js` for preventing users access to other users programs.
+* Setup CORS properly
+* OAuth or HTTP authentication to crossdomain authentication
