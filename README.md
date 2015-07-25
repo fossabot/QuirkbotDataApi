@@ -40,7 +40,7 @@ Middleware configuration at `/config/http.js` and `/config/passport.js`.
 
 ## TODO:
 
+* OAuth or HTTP authentication to crossdomain authentication
 * Implement `/api/policies/isYou.js` for preventing users access to other users.
 * Implement `/api/policies/isAuthor.js` for preventing users access to other users programs.
 * Setup CORS properly
-* OAuth or HTTP authentication to crossdomain authentication
