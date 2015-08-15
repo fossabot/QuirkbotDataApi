@@ -18,11 +18,11 @@ a [Sails](http://sailsjs.org) application
 ## How to run with docker
 
 1. Make sure you have Docker, docker-machine and docker-compose installed and running properly
-. Create a VM for docker: `docker-machine create -d virtualbox name-of-your-virtual-machine`
-. Clone the repo: `git clone https://murilopolese@bitbucket.org/murilopolese/quirkbot-api.git`
-. Browse the cloned repo folder
-. Build the image: `docker build -t quirkbot .
-. Run the image: `docker run -p 8080:1337 quirkbot` or `docker-compose up`
+2. Create a VM for docker: `docker-machine create -d virtualbox name-of-your-virtual-machine`
+3. Clone the repo: `git clone https://murilopolese@bitbucket.org/murilopolese/quirkbot-api.git`
+4. Browse the cloned repo folder
+5. Build the image: `docker build -t quirkbot .
+6. Run the image: `docker run -p 8080:1337 quirkbot` or `docker-compose up`
 
 ### Extra nice configs:
 
