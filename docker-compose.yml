@@ -6,3 +6,7 @@ web:
     volumes:
         - ./src/api:/src/api
         - ./src/config:/src/config
+    links: 
+        - mongodb:mongodb
+mongodb:
+    image: mongo
