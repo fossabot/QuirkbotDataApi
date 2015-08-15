@@ -1,4 +1,8 @@
 web:
-  build: .
-  ports:
-   - "8080:1337"
+    build: .
+    command: ./node_modules/nodemon/bin/nodemon.js app.js
+    ports:
+        - "8080:1337"
+    volumes:
+        - ./src/api:/src/api
+        - ./src/config:/src/config
