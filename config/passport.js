@@ -1,41 +1,42 @@
 // http://iliketomatoes.com/implement-passport-js-authentication-with-sails-js-0-10-2/
-var passport = require('passport'),
-LocalStrategy = require('passport-local').Strategy,
-bcrypt = require('bcrypt');
+var passport = require( 'passport' ),
+LocalStrategy = require( 'passport-local' ).Strategy,
+bcrypt = require( 'bcrypt' );
 
-passport.serializeUser(function(user, done) {
-    done(null, user.id);
+passport.serializeUser( function( user, done ) {
+    done( null, user.id );
 });
 
-passport.deserializeUser(function(id, done) {
-    User.findOne({ id: id } , function (err, user) {
-        done(err, user);
+passport.deserializeUser( function( id, done ) {
+    User.findOne( { id: id } , function ( err, user ) {
+        done( err, user );
     });
 });
 
-passport.use(new LocalStrategy({
+passport.use( new LocalStrategy({
     usernameField: 'email',
     passwordField: 'password'
   },
-  function(email, password, done) {
+  function( email, password, done ) {
 
-    User.findOne({ email: email }, function (err, user) {
-      if (err) { return done(err); }
-      if (!user) {
-        return done(null, false, { message: 'Incorrect email.' });
+    User.findOne( { email: email }, function ( err, user ) {
+      if ( err ) { return done( err ); }
+      if ( !user ) {
+        return done( null, false, { message: 'Incorrect email.' } );
       }
 
-      bcrypt.compare(password, user.password, function (err, res) {
-          if (!res)
-            return done(null, false, {
+      bcrypt.compare( password, user.password, function ( err, res ) {
+          if ( !res ) {
+            return done( null, false, {
               message: 'Invalid Password'
             });
+          }
           var returnUser = {
             email: user.email,
             createdAt: user.createdAt,
             id: user.id
           };
-          return done(null, returnUser, {
+          return done( null, returnUser, {
             message: 'Logged In Successfully'
           });
         });

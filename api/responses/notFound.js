@@ -72,6 +72,9 @@ module.exports = function notFound (data, options) {
       else {
         sails.log.warn('res.notFound() :: When attempting to render error page view, an error occured (sending JSON instead).  Details: ', err);
       }
+      if(!data) {
+        data = 'Not found';
+      }
       return res.jsonx(data);
     }
 

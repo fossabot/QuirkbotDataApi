@@ -41,6 +41,7 @@ Middleware configuration at `/config/http.js` and `/config/passport.js`.
 ## TODO:
 
 * Docker
+* Add all logic to services
 * OAuth or HTTP authentication to crossdomain authentication
 * Implement `/api/policies/isYou.js` for preventing users access to other users.
 * Implement `/api/policies/isAuthor.js` for preventing users access to other users programs.
