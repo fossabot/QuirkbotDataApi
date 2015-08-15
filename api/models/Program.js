@@ -8,9 +8,6 @@
 module.exports = {
 
 	attributes: {
-		modifiedAt: {
-			type: 'date'
-		},
 		author: {
 			model: 'user',
 			required: true
@@ -22,6 +19,11 @@ module.exports = {
 		tree: {
 			type: 'array',
 			defaultsTo: []
+		},
+		version: {
+			type: 'integer',
+			required: true,
+			defaultsTo: 0
 		},
 		apiVersion: {
 			type: 'string',
