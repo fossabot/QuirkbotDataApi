@@ -6,13 +6,23 @@
 */
 
 var bcrypt = require( 'bcrypt' );
+var uniqueEmail = false;
 
 module.exports = {
+	/**
+	* Custom validation types
+	*/
+	types: {
+		uniqueEmail: function( value ) {
+			return uniqueEmail;         
+		}
+	},
 
 	attributes: {
 		email: {
 			type: 'email',
 			unique: true,
+			uniqueEmail: true,
 			required: true
 		},
 		password: {
@@ -35,6 +45,7 @@ module.exports = {
 		nickname: {
 			type: 'string',
 			size: 45,
+			unique: true,
 			required: true
 		},
 		region: {
@@ -70,6 +81,12 @@ module.exports = {
 				next();
 			}
 		);
+	},
+	beforeValidate: function( values, cb ) {
+		User.findOne( { email: values.email } ).exec( function ( err, record ) {
+			uniqueEmail = !err && !record;
+			cb();
+		});
 	}
 };
 

@@ -66,8 +66,6 @@ Middleware configuration at `/config/http.js` and `/config/passport.js`.
 
 ## TODO:
 
-* Docker
-* Add all logic to services
 * OAuth or HTTP authentication to crossdomain authentication
 * Implement `/api/policies/isYou.js` for preventing users access to other users.
 * Implement `/api/policies/isAuthor.js` for preventing users access to other users programs.
@@ -79,5 +77,10 @@ Middleware configuration at `/config/http.js` and `/config/passport.js`.
 	3. if exists, check if it's the client is the newest update else return the server's version
 	(take Program.version as reference)
 	(Always use current logged user as the author - Program before create)
-* Setup CORS properly (done)
 * Soft delete (?)
+* Add all logic to services
+
+## Done!
+
+* Setup CORS properly (done)
+* Docker (done)

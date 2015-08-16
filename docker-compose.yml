@@ -10,3 +10,5 @@ web:
         - mongodb:mongodb
 mongodb:
     image: mongo
+    ports:
+        - "27017:27017"
