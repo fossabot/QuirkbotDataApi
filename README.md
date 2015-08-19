@@ -75,7 +75,8 @@ Middleware configuration at `/config/http.js` and `/config/passport.js`.
 
 ## TODO:
 
-* OAuth or HTTP authentication to crossdomain authentication
+* OAuth or HTTP authentication to crossdomain authentication (https://github.com/lucj/sails-oauth2-api)
+* Implement `/api/policies/sessionAuth.js` with the OAuth methods.
 * Implement `/api/policies/isYou.js` for preventing users access to other users.
 * Implement `/api/policies/isAuthor.js` for preventing users access to other users programs.
 * Transactional emails
@@ -88,6 +89,7 @@ Middleware configuration at `/config/http.js` and `/config/passport.js`.
 	(Always use current logged user as the author - Program before create)
 * Soft delete (?)
 * Add all logic to services
+* Add Cloud Compiler to Docker stack
 
 ## Done!
 
