@@ -5,6 +5,12 @@
  * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
  */
 var passport = require( 'passport' );
+var oauthserver = require('oauth2-server');
+var oauth = oauthserver({
+  model: OAuth,
+  grants: ['password'],
+  debug: true
+});
 
 module.exports = {
 
@@ -46,11 +52,14 @@ module.exports = {
         })(req, res);
     },
 
-    logout: function(req, res) {
+    logout: function( req, res ) {
         req.logout();
         res.ok({
             message: 'You are logged out now.',
             data: {}
         })
-    }
+    },
+
+    token: oauth.grant(),
+    test: oauth.authorise()
 };
