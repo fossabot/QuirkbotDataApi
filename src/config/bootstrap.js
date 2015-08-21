@@ -10,22 +10,57 @@
  */
 
 module.exports.bootstrap = function( cb ) {
-	User.create({
-		email: 'murilo@asd.com',
-		nickname: 'murilo',
-		password: 'murilo',
-		birthdate: '1989-04-14',
-		country: 'br'
-	})
-	.exec( function( err, user ) {
-		console.log( 'USER CREATED', user );
-		Client.create({
-			clientId: 'abc1',
-			clientSecret: 'asd'
-		})
-		.exec( function( err, client ) {
-			console.log( 'CLIENT CREATED', client );
-			cb();
-		});
-	})
+	createUser( function() {
+		createClient( cb );
+	});
 };
+
+var createUser = function( cb ) {
+	User.findOne( 
+		{ email: 'foo@asd.com' },
+		function( err, user ) {
+			if( err ) {
+				console.log( err );
+			}
+			if( user ) {
+				console.log( 'default user already exists' );
+				cb();
+			} else {
+				User.create({
+					email: 'foo@asd.com',
+					nickname: 'foo',
+					password: 'foo',
+					birthdate: '1989-04-14',
+					country: 'br'
+				}).exec( function( err, user ) {
+					console.log( 'USER CREATED', user );
+					cb();
+				})
+			}
+		}
+	)
+}
+
+var createClient = function( cb ) {
+	Client.findOne( 
+		{ clientId: 'abc1' }, 
+		function( err, client ) {
+			if( err ) {
+				console.log( err );
+			}
+			if( client ) {
+				console.log( 'default client already exists' );
+				cb();
+			} else {
+				Client.create({
+					clientId: 'abc1',
+					clientSecret: 'asd'
+				})
+				.exec( function( err, client ) {
+					console.log( 'CLIENT CREATED', client );
+					cb();
+				});
+			}
+		}
+	)
+}

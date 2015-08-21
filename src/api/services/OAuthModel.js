@@ -47,23 +47,53 @@ model.grantTypeAllowed = function ( clientId, grantType, callback ) {
 	}
 	callback( false, true );
 }
-model.saveAccessToken = function ( accessToken, clientId, expires, userId, callback ) {
+model.saveAccessToken = function ( accessToken, clientId, expires, user, callback ) {
 	AccessToken.create({
 		accessToken: accessToken,
 		clientId: clientId,
-		userId: userId,
+		userId: user.id,
 		expires: expires
 	}).exec( function( err, token ) {
-		callback( err );
+		callback( err, token );
 	});
 }
 model.getUser = function ( email, password, callback ) {
 	User.findOne(
 		{ email: email },
 		function( err, user ) {
-			bcrypt.compare( password, user.password, function ( err, res ) {
-				callback( err, res || false );
-			});
+			if( user ) {
+				bcrypt.compare( password, user.password, function ( err, success ) {
+					callback( err, user || false );
+				});
+			} else {
+				callback( true );
+			}
 		}
 	);
 }
+
+/*
+ * Required to support refreshToken grant type
+ */
+model.saveRefreshToken = function ( token, clientId, expires, user, callback ) {
+	RefreshToken.create({
+		refreshToken: token,
+		clientId: clientId,
+		userId: user.id,
+		expires: expires
+	})
+	.exec( function( err, refreshToken ) {
+  		console.log('in saveRefreshToken (token: ' + token + ', clientId: ' + clientId +', userId: ' + user.id + ', expires: ' + expires + ')');
+		callback( err, refreshToken );
+	});
+};
+
+model.getRefreshToken = function ( refreshToken, callback ) {
+	RefreshToken.findOne( 
+		{ refreshToken: refreshToken }, 
+		function( err, token ) {
+			console.log('in getRefreshToken (refreshToken: ' + refreshToken + ')');
+			callback( err, token )
+		}
+	)
+};
