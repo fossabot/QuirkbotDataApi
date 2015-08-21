@@ -87,8 +87,6 @@ Middleware configuration at `/config/http.js` and `/config/passport.js`.
 
 ## TODO:
 
-* Implement `/api/policies/isYou.js` for preventing users access to other users.
-* Implement `/api/policies/isAuthor.js` for preventing users access to other users programs.
 * Client ID/Secret the right way
 * Transactional emails
 * Account confirmation
@@ -109,3 +107,5 @@ Middleware configuration at `/config/http.js` and `/config/passport.js`.
 * OAuth or HTTP authentication to crossdomain authentication (https://github.com/lucj/sails-oauth2-api)
 * Implement `/api/policies/sessionAuth.js` with the OAuth methods.
 * Refresh OAuth Token
+* Implement `/api/policies/isYou.js` for preventing users to alter other users.
+* Implement `/api/policies/isAuthor.js` for preventing users access to other users programs.

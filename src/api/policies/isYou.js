@@ -7,6 +7,9 @@
  * @docs        :: http://sailsjs.org/#!/documentation/concepts/Policies
  *
  */
-module.exports = function(req, res, next) {
-	return next();
+module.exports = function( req, res, next ) {
+	if( req.params.id == req.user.id ) {
+		return next();
+	}
+	return res.forbidden( 'You are not permitted to perform this action.' );
 };

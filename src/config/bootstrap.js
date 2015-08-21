@@ -10,14 +10,34 @@
  */
 
 module.exports.bootstrap = function( cb ) {
-	createUser( function() {
-		createClient( cb );
-	});
+	createUser( 
+		{
+			email: 'foo@asd.com',
+			nickname: 'foo',
+			password: 'foo',
+			birthdate: '1989-04-14',
+			country: 'br'
+		},
+		function() {
+			createUser( 
+				{
+					email: 'bar@asd.com',
+					nickname: 'bar',
+					password: 'bar',
+					birthdate: '2009-04-14',
+					country: 'se'
+				},
+				function() {
+					createClient( cb );
+				}
+			);
+		}
+	);
 };
 
-var createUser = function( cb ) {
+var createUser = function( userData, cb ) {
 	User.findOne( 
-		{ email: 'foo@asd.com' },
+		{ email: userData.email },
 		function( err, user ) {
 			if( err ) {
 				console.log( err );
@@ -26,20 +46,15 @@ var createUser = function( cb ) {
 				console.log( 'default user already exists' );
 				cb();
 			} else {
-				User.create({
-					email: 'foo@asd.com',
-					nickname: 'foo',
-					password: 'foo',
-					birthdate: '1989-04-14',
-					country: 'br'
-				}).exec( function( err, user ) {
+				User.create( userData )
+				.exec( function( err, user ) {
 					console.log( 'USER CREATED', user );
 					cb();
 				})
 			}
 		}
 	)
-}
+};
 
 var createClient = function( cb ) {
 	Client.findOne( 
