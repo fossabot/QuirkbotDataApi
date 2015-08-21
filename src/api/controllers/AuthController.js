@@ -14,5 +14,5 @@ module.exports = {
         rest: false
     },
 
-    token: OAuth.grant()
+    token: OAuthService.grant()
 };

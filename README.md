@@ -47,9 +47,11 @@ After this you will be able to access the quirkbot api app at `http://docker:808
 
 Your docker client knows the address of your running virtual machine through environment variables exposed manually or dinamically by executing `eval "$(docker-machine env name-of-your-virtual-machine)"`. The problem is that for each new session of your terminal running zshell you will need to execute it again. To solve that you can add the following lines to your `.zshrc`:
 
-	if docker-machine status name-of-your-virtual-machine | grep Running > /dev/null; then
-		eval "$(docker-machine env name-of-your-virtual-machine)"
-	fi
+```
+if docker-machine status name-of-your-virtual-machine | grep Running > /dev/null; then
+	eval "$(docker-machine env name-of-your-virtual-machine)"
+fi
+```
 
 ## Available endpoints
 
@@ -58,8 +60,18 @@ Your docker client knows the address of your running virtual machine through env
 
 As described at `/config/routes.js`:
 
-* `post /login`: Execute method `login` from `/api/controllers/AuthController`
-* `/logout`: Execute method `logout` from `/api/controllers/AuthController`
+* `post /auth/token`: Post your email as username and your password so you can get a token to access the protected endpoints. The request should be something like this:
+
+```
+POST /oauth/token HTTP/1.1
+Host: docker:8080
+Content-Type: application/x-www-form-urlencoded; text/html; charset=UTF-8
+Authorization: Basic YWJjMTphc2Q=
+Cache-Control: no-cache
+Content-Type: application/x-www-form-urlencoded
+
+grant_type=password&username=murilo%40asd.com&password=murilo
+```
 
 ## Permissions (Policies)
 
@@ -75,10 +87,10 @@ Middleware configuration at `/config/http.js` and `/config/passport.js`.
 
 ## TODO:
 
-* OAuth or HTTP authentication to crossdomain authentication (https://github.com/lucj/sails-oauth2-api)
-* Implement `/api/policies/sessionAuth.js` with the OAuth methods.
 * Implement `/api/policies/isYou.js` for preventing users access to other users.
 * Implement `/api/policies/isAuthor.js` for preventing users access to other users programs.
+* Refresh OAuth Token
+* Client ID/Secret the right way
 * Transactional emails
 * Account confirmation
 * Smart create or update: Always post an update and if doesn't exist, create:
@@ -95,3 +107,5 @@ Middleware configuration at `/config/http.js` and `/config/passport.js`.
 
 * Setup CORS properly (done)
 * Docker (done)
+* OAuth or HTTP authentication to crossdomain authentication (https://github.com/lucj/sails-oauth2-api)
+* Implement `/api/policies/sessionAuth.js` with the OAuth methods.

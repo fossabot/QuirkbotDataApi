@@ -8,7 +8,7 @@
  *
  */
 module.exports = function( req, res, next ) {
-	return OAuth.authorise()( req, res, function( err, data ) {
+	return OAuthService.authorise()( req, res, function( err, data ) {
 		if( err ) return res.forbidden( 'You are not permitted to perform this action.' );
 		return next();
 	});
