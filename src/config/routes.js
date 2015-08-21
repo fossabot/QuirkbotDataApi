@@ -22,9 +22,6 @@
 
 module.exports.routes = {
 
-  'post /login': 'AuthController.login',
-
-  '/logout': 'AuthController.logout',
   '/oauth/token': 'AuthController.token'
   
 };
