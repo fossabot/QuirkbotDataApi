@@ -59,7 +59,7 @@ module.exports = {
 			return res.serverError( 'Could not reset password' );
 		}
 		ResetRequest.findOne( 
-			{ token: req.body.token }, 
+			{ token: req.body.token, active: true }, 
 			function( err, request ) {
 				if( err || !request ) {
 					return res.serverError( 'Invalid reset token' );
@@ -76,7 +76,12 @@ module.exports = {
 							if( err || !user ) {
 								return res.serverError( 'Could not update password' );
 							}
-							res.ok( user );
+							ResetRequest.update(
+								{ userId: request.userId },
+								{ active: false }
+							).exec( function() {
+								res.ok( user );
+							});
 						})
 					}
 				);

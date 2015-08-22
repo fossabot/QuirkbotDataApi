@@ -8,6 +8,10 @@ module.exports = {
 		},
 		token: {
 			type: 'string'
+		},
+		active: {
+			type: 'boolean',
+			defaultsTo: true
 		}
 	},
 	beforeCreate: function( values, next ) {
