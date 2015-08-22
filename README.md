@@ -87,7 +87,6 @@ Middleware configuration at `/config/http.js` and `/config/passport.js`.
 
 ## TODO:
 
-* Account confirmation
 * Password reset
 * Smart create or update: Always post an update and if doesn't exist, create:
 	1. check id
@@ -110,3 +109,4 @@ Middleware configuration at `/config/http.js` and `/config/passport.js`.
 * Implement `/api/policies/isYou.js` for preventing users to alter other users.
 * Implement `/api/policies/isAuthor.js` for preventing users access to other users programs.
 * Transactional emails
+* Account confirmation

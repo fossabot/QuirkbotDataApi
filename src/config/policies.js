@@ -23,16 +23,17 @@ module.exports.policies = {
     'find': 'sessionAuth',
     'findOne': 'sessionAuth',
     'create': true,
-    'update': ['sessionAuth', 'isYou'],
-    'destroy': ['sessionAuth', 'isYou']
+    'update': [ 'sessionAuth', 'isYou' ],
+    'destroy': [ 'sessionAuth', 'isYou' ],
+    'confirm': [ 'sessionAuth', 'isYou' ]
   },
 
   ProgramController: {
     'find': 'sessionAuth',
     'findOne': 'sessionAuth',
-    'create': ['sessionAuth'],
-    'update': ['sessionAuth', 'isAuthor'],
-    'destroy': ['sessionAuth', 'isAuthor']
+    'create': [ 'sessionAuth' ],
+    'update': [ 'sessionAuth', 'isAuthor' ],
+    'destroy': [ 'sessionAuth', 'isAuthor' ]
   },
 
   AuthController: {
