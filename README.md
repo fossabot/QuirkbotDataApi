@@ -87,15 +87,15 @@ Middleware configuration at `/config/http.js` and `/config/passport.js`.
 
 ## TODO:
 
-* Client ID/Secret the right way
-* Transactional emails
 * Account confirmation
+* Password reset
 * Smart create or update: Always post an update and if doesn't exist, create:
 	1. check id
 	2. if doesn't exist, ignore id and create a new one
 	3. if exists, check if it's the client is the newest update else return the server's version
 	(take Program.version as reference)
 	(Always use current logged user as the author - Program before create)
+* Client ID/Secret the right way
 * Soft delete (?)
 * Add all logic to services
 * Add Cloud Compiler to Docker stack
@@ -109,3 +109,4 @@ Middleware configuration at `/config/http.js` and `/config/passport.js`.
 * Refresh OAuth Token
 * Implement `/api/policies/isYou.js` for preventing users to alter other users.
 * Implement `/api/policies/isAuthor.js` for preventing users access to other users programs.
+* Transactional emails

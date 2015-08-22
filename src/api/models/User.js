@@ -87,6 +87,11 @@ module.exports = {
 			uniqueEmail = !err && !record;
 			cb();
 		});
+	},
+	afterCreate: function( user, next ) {
+		EmailService.sendConfirmation( user, function( err, response ) {
+			next( err, response );
+		});
 	}
 };
 

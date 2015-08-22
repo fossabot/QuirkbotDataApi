@@ -8,6 +8,8 @@ web:
         - ./src/config:/src/config
     links: 
         - mongodb:mongodb
+    environment:
+        MANDRILL_API_KEY: "BUFbKUNmFMA7PY6Pz4xcfw"
 mongodb:
     image: mongo
     ports:
