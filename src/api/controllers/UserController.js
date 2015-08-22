@@ -6,14 +6,6 @@
  */
 
 module.exports = {
-	confirm: function( req, res ) {
-		User.update( { id: req.user.id }, { confirmedEmail: true } )
-		.exec( function( err, user ) {
-			if( err ) {
-				return res.serverError( err );
-			}
-			res.json( user );
-		});
-	}
+
 };
 

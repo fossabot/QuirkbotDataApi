@@ -25,7 +25,6 @@ module.exports.policies = {
     'create': true,
     'update': [ 'isAuthenticated', 'isYou' ],
     'destroy': [ 'isAuthenticated', 'isYou' ],
-    'confirm': [ 'isAuthenticated', 'isYou' ]
   },
 
   ProgramController: {
@@ -37,7 +36,10 @@ module.exports.policies = {
   },
 
   AuthController: {
-    'token': true
+    'token': true,
+    'requestReset': true,
+    'resetPassword': true,
+    'confirm': [ 'isAuthenticated', 'isYou' ],
   }
 
 };

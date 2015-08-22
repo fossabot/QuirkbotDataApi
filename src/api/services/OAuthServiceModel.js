@@ -58,12 +58,18 @@ model.saveAccessToken = function ( accessToken, clientId, expires, user, callbac
 	});
 }
 model.getUser = function ( email, password, callback ) {
+	console.log( 'get user' );
 	User.findOne(
 		{ email: email },
 		function( err, user ) {
+			console.log( user.password );
 			if( user ) {
 				bcrypt.compare( password, user.password, function ( err, success ) {
-					callback( err, user || false );
+					if( success ) {
+						callback( null, user );
+					} else {
+						callback( 'You are not permitted to perform this action.' );
+					}
 				});
 			} else {
 				callback( true );
