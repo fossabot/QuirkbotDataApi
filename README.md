@@ -118,7 +118,6 @@ token=%242a%2410%24glx8hwKty7Bhy.BKymO5euZoLmNS4NQmZxuah.t7KjDqFMZLtj8bq&passwor
 
 ## TODO:
 
-* Add Cloud Compiler to Docker stack
 * Soft delete (?)
 * Add all logic to services
 * Logging

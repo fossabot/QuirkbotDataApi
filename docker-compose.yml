@@ -4,8 +4,8 @@ web:
     ports:
         - "8080:1337"
     volumes:
-        - ./src/api:/src/api
-        - ./src/config:/src/config
+        - ./dataserver/src/api:/src/api
+        - ./dataserver/src/config:/src/config
     links: 
         - mongodb:mongodb
     environment:
