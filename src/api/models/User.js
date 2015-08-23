@@ -7,6 +7,7 @@
 
 var bcrypt = require( 'bcrypt' );
 var uniqueEmail = false;
+var uniqueNickname = false;
 
 module.exports = {
 	/**
@@ -15,6 +16,9 @@ module.exports = {
 	types: {
 		uniqueEmail: function( value ) {
 			return uniqueEmail;         
+		},
+		uniqueNickname: function( value ) {
+			return uniqueNickname;         
 		}
 	},
 
@@ -45,7 +49,7 @@ module.exports = {
 		nickname: {
 			type: 'string',
 			size: 45,
-			unique: true,
+			uniqueNickname: true,
 			required: true
 		},
 		region: {
@@ -85,7 +89,10 @@ module.exports = {
 	beforeValidate: function( values, cb ) {
 		User.findOne( { email: values.email } ).exec( function ( err, record ) {
 			uniqueEmail = !err && !record;
-			cb();
+			User.findOne( { nickname: values.nickname } ).exec( function( err, record2 ) {
+				uniqueNickname = !err && !record2;
+				cb();
+			});
 		});
 	},
 	afterCreate: function( user, next ) {

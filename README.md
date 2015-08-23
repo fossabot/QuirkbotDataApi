@@ -118,7 +118,6 @@ token=%242a%2410%24glx8hwKty7Bhy.BKymO5euZoLmNS4NQmZxuah.t7KjDqFMZLtj8bq&passwor
 
 ## TODO:
 
-* Unique nicknames
 * Smart create or update: Always post an update and if doesn't exist, create:
 	1. check id
 	2. if doesn't exist, ignore id and create a new one
@@ -145,3 +144,4 @@ token=%242a%2410%24glx8hwKty7Bhy.BKymO5euZoLmNS4NQmZxuah.t7KjDqFMZLtj8bq&passwor
 * Transactional emails
 * Account confirmation
 * Password reset
+* Unique nicknames
