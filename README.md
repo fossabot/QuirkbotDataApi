@@ -118,12 +118,6 @@ token=%242a%2410%24glx8hwKty7Bhy.BKymO5euZoLmNS4NQmZxuah.t7KjDqFMZLtj8bq&passwor
 
 ## TODO:
 
-* Smart create or update: Always post an update and if doesn't exist, create:
-	1. check id
-	2. if doesn't exist, ignore id and create a new one
-	3. if exists, check if it's the client is the newest update else return the server's version
-	(take Program.version as reference)
-	(Always use current logged user as the author - Program before create)
 * Add Cloud Compiler to Docker stack
 * Soft delete (?)
 * Add all logic to services
@@ -145,3 +139,9 @@ token=%242a%2410%24glx8hwKty7Bhy.BKymO5euZoLmNS4NQmZxuah.t7KjDqFMZLtj8bq&passwor
 * Account confirmation
 * Password reset
 * Unique nicknames
+* Smart create or update: Always post an update and if doesn't exist, create:
+	1. check id
+	2. if doesn't exist, ignore id and create a new one
+	3. if exists, check if it's the client is the newest update else return the server's version
+	(take Program.version as reference)
+	(Always use current logged user as the author - Program before create)
