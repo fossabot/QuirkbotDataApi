@@ -8,8 +8,8 @@ var defaultMessage = {
 	"from_email": "no-reply@quirkbot.com",
 	"from_name": "Quirkbot",
 	"to": [{
-			"email": "murilopolese@gmail.com",
-			"name": "Murilo Polese",
+			"email": "info@quirkbot.com",
+			"name": "Quirkbot",
 			"type": "to"
 		}],
 	"headers": {
@@ -40,8 +40,9 @@ var sendConfirmation = function( user, cb ) {
 		email: user.email,
 		type: "to"
 	}];
-	message.text = "Hey! Please confirm your account by entering the following link: http://code.quirkbot.com/confirm/" + user.id;
-	message.html = "<h1>Hey!</h1><p>Please confirm your email at http://code.quirkbot.com/confirm/" + user.id + "</p>";
+	message.subject = "We need your confirmation";
+	message.text = "Hey! Please confirm your account by entering the following link: " + process.env.APP_CONFIRMATION_URL + user.id;
+	message.html = "<h1>Hey!</h1><p>Please confirm your email at " + process.env.APP_CONFIRMATION_URL + user.id + "</p>";
 
 	send( message, cb );
 }
@@ -52,8 +53,8 @@ var sendReset = function( user, request, cb ) {
 		email: user.email,
 		type: "to"
 	}];
-	message.text = "Access http://code.quirkbot.com/reset/" + request.token + " to reset your password. If you did not request your password, ignore this email.";
-	message.html = "<h1>Hey!</h1><p>Access http://code.quirkbot.com/reset/" + request.token + " to reset your password. If you did not request your password, ignore this email.</p>";
+	message.text = "Access " + process.env.APP_RESET_PASSWORD_URL + request.token + " to reset your password. If you did not request your password, ignore this email.";
+	message.html = "<h1>Hey!</h1><p>Access " + process.env.APP_RESET_PASSWORD_URL + request.token + " to reset your password. If you did not request your password, ignore this email.</p>";
 
 	send( message, cb );
 }

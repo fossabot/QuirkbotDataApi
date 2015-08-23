@@ -26,7 +26,6 @@ model.getClient = function ( clientId, clientSecret, callback ) {
 		function( err, client ) {
 			if( err ) { callback( err ) };
 			if( !client ) { 
-				console.log( 'No client was found' );
 				callback( 'No client was found' );
 			} else {
 				callback( null, {
@@ -58,11 +57,9 @@ model.saveAccessToken = function ( accessToken, clientId, expires, user, callbac
 	});
 }
 model.getUser = function ( email, password, callback ) {
-	console.log( 'get user' );
 	User.findOne(
 		{ email: email },
 		function( err, user ) {
-			console.log( user.password );
 			if( user ) {
 				bcrypt.compare( password, user.password, function ( err, success ) {
 					if( success ) {
@@ -89,7 +86,6 @@ model.saveRefreshToken = function ( token, clientId, expires, user, callback ) {
 		expires: expires
 	})
 	.exec( function( err, refreshToken ) {
-  		console.log('in saveRefreshToken (token: ' + token + ', clientId: ' + clientId +', userId: ' + user.id + ', expires: ' + expires + ')');
 		callback( err, refreshToken );
 	});
 };
@@ -98,7 +94,6 @@ model.getRefreshToken = function ( refreshToken, callback ) {
 	RefreshToken.findOne( 
 		{ refreshToken: refreshToken }, 
 		function( err, token ) {
-			console.log('in getRefreshToken (refreshToken: ' + refreshToken + ')');
 			callback( err, token )
 		}
 	)

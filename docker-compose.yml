@@ -10,6 +10,10 @@ web:
         - mongodb:mongodb
     environment:
         MANDRILL_API_KEY: "BUFbKUNmFMA7PY6Pz4xcfw"
+        APP_CONFIRMATION_URL: "http://docker/confirm"
+        APP_RESET_URL: "http://docker/reset"
+        MONGO_HOST: "mongodb"
+        MONGO_PORT: 27017
 mongodb:
     image: mongo
     ports:

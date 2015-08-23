@@ -10,8 +10,6 @@ var bcrypt = require( 'bcrypt' );
 module.exports = {
 
     _config: {
-        // actions: false,
-        // shortcuts: false,
         rest: false
     },
 
@@ -40,7 +38,6 @@ module.exports = {
 					userId: user.id
 				}).exec( function( err, request ) {
 					if( err ) {
-						console.log( err );
 						return res.serverError( 'Could not request reset' );
 					}
 					EmailService.sendReset( user, request, function( err, data ) {
