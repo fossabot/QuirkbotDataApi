@@ -118,6 +118,7 @@ token=%242a%2410%24glx8hwKty7Bhy.BKymO5euZoLmNS4NQmZxuah.t7KjDqFMZLtj8bq&passwor
 
 ## TODO:
 
+* Different confirmation email if you are a kid (email to parents)
 * Soft delete (?)
 * Add all logic to services
 * Logging

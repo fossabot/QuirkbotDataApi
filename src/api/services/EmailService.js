@@ -40,6 +40,7 @@ var sendConfirmation = function( user, cb ) {
 		email: user.email,
 		type: "to"
 	}];
+
 	message.subject = "We need your confirmation";
 	message.text = "Hey! Please confirm your account by entering the following link: " + process.env.APP_CONFIRMATION_URL + user.id;
 	message.html = "<h1>Hey!</h1><p>Please confirm your email at " + process.env.APP_CONFIRMATION_URL + user.id + "</p>";
