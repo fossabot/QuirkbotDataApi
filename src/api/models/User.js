@@ -15,10 +15,10 @@ module.exports = {
 	*/
 	types: {
 		uniqueEmail: function( value ) {
-			return uniqueEmail;         
+			return uniqueEmail;
 		},
 		uniqueNickname: function( value ) {
-			return uniqueNickname;         
+			return uniqueNickname;
 		}
 	},
 
@@ -67,7 +67,7 @@ module.exports = {
 		},
 		toJSON: function() {
 			var obj = this.toObject();
-			delete obj.confirmedEmail;
+			// delete obj.confirmedEmail;
 			delete obj.password;
 			return obj;
 		}
@@ -76,7 +76,7 @@ module.exports = {
 		if( !value.password ) {
 			return next( { err: [ 'Password not found' ] } );
 		}
-		bcrypt.hash( 
+		bcrypt.hash(
 			value.password,
 			10,
 			function passwordEncrypted( err, encryptedPassword ) {
@@ -101,4 +101,3 @@ module.exports = {
 		});
 	}
 };
-

@@ -8,9 +8,9 @@
 module.exports = {
 	create: function( req, res, next ) {
 		req.body.author = req.user.id;
-		
-		Program.findOne( 
-			{ id: req.body.id }, 
+
+		Program.findOne(
+			{ id: req.body.id },
 			function( err, program ) {
 				if( err ) {
 					return res.serverError( err );
@@ -21,8 +21,8 @@ module.exports = {
 						// Server program is the newest version
 						return res.ok( program );
 					} else {
-						// Server program is an oldee version
-						Program.update( 
+						// Server program is an older version
+						Program.update(
 							{ id: program.id },
 							req.body
 						).exec( function( err, updatedProgram ) {
@@ -46,4 +46,3 @@ module.exports = {
 		);
 	}
 };
-

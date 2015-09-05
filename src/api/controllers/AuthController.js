@@ -9,12 +9,12 @@ var bcrypt = require( 'bcrypt' );
 
 module.exports = {
 
-    _config: {
-        rest: false
-    },
+  _config: {
+      rest: false
+  },
 
-    token: OAuthService.grant(),
-    confirm: function( req, res ) {
+  token: OAuthService.grant(),
+  confirm: function( req, res ) {
 		User.update( { id: req.user.id }, { confirmedEmail: true } )
 		.exec( function( err, user ) {
 			if( err ) {
@@ -28,8 +28,8 @@ module.exports = {
 			return res.serverError( 'Email not found' );
 		}
 
-		User.findOne( 
-			{ email: req.body.email }, 
+		User.findOne(
+			{ email: req.body.email },
 			function( err, user ) {
 				if( err || !user ) {
 					return res.serverError( 'Email not found' );
@@ -55,13 +55,13 @@ module.exports = {
 		if( !req.body || !req.body.token || !req.body.password ) {
 			return res.serverError( 'Could not reset password' );
 		}
-		ResetRequest.findOne( 
-			{ token: req.body.token, active: true }, 
+		ResetRequest.findOne(
+			{ token: req.body.token, active: true },
 			function( err, request ) {
 				if( err || !request ) {
 					return res.serverError( 'Invalid reset token' );
 				}
-				bcrypt.hash( 
+				bcrypt.hash(
 					req.body.password,
 					10,
 					function passwordEncrypted( err, encryptedPassword ) {

@@ -39,7 +39,7 @@ module.exports.policies = {
     'token': true,
     'requestReset': true,
     'resetPassword': true,
-    'confirm': [ 'isAuthenticated', 'isYou' ],
+    'confirm': true,
   }
 
 };
