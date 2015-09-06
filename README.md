@@ -118,14 +118,13 @@ token=%242a%2410%24glx8hwKty7Bhy.BKymO5euZoLmNS4NQmZxuah.t7KjDqFMZLtj8bq&passwor
 
 ## TODO:
 
+* HTTPS
 * Generate token for confirmation
 * Policies return correct error codes
-* Errors return codes instead of strings
 * Always return standard json
 	- Error code
 	- Error message
 	- Error data (original error)
-* Remove programs from UserModel
 * Prevent app crash when Mandrill fails
 * Resend confirmation endpoint
 * Different confirmation email if you are a kid (email to parents)
@@ -134,7 +133,6 @@ token=%242a%2410%24glx8hwKty7Bhy.BKymO5euZoLmNS4NQmZxuah.t7KjDqFMZLtj8bq&passwor
 * Logging
 * Client ID/Secret the right way
 * API endpoint tests
-* Standard API response
 
 ## Done!
 
@@ -155,3 +153,4 @@ token=%242a%2410%24glx8hwKty7Bhy.BKymO5euZoLmNS4NQmZxuah.t7KjDqFMZLtj8bq&passwor
 	3. if exists, check if it's the client is the newest update else return the server's version
 	(take Program.version as reference)
 	(Always use current logged user as the author - Program before create)
+* Remove programs from UserModel

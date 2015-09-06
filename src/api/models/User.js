@@ -61,10 +61,6 @@ module.exports = {
 			type: 'boolean',
 			defaultsTo: false
 		},
-		programs: {
-			collection: 'program',
-			via: 'author'
-		},
 		toJSON: function() {
 			var obj = this.toObject();
 			// delete obj.confirmedEmail;
