@@ -116,19 +116,34 @@ Content-Type: application/x-www-form-urlencoded
 token=%242a%2410%24glx8hwKty7Bhy.BKymO5euZoLmNS4NQmZxuah.t7KjDqFMZLtj8bq&password=secret
 ```
 
+## List of error codes:
+
+- EMAIL_NOT_FOUND
+- USER_NOT_FOUND
+- USER_UPDATE
+- RESET_PASSWORD_REQUEST
+- RESET_PASSWORD
+- RESET_REQUEST_NOT_FOUND
+- ENCRYPT_PASSWORD
+- PROGRAM_NOT_FOUND
+- PROGRAM_UPDATE
+- PROGRAM_CREATE
+- NOT_AUTHENTICATED
+- NOT_AUTHOR
+- NOT_CONFIRMED
+- NOT_YOURSELF
+- AUTH_GRANT
+
 ## TODO:
 
+* Logging
+* Validate body request on ProgramController update
 * Generate token for confirmation
-* Policies return correct error codes
-* Always return standard json
-	- Error code
-	- Error message
-	- Error data (original error)
 * Different confirmation email if you are a kid (email to parents)
 * HTTPS
 * Soft delete (?)
 * Add all logic to services
-* Logging
+* Policies return correct error codes
 * Client ID/Secret the right way
 * API endpoint tests
 
@@ -154,3 +169,7 @@ token=%242a%2410%24glx8hwKty7Bhy.BKymO5euZoLmNS4NQmZxuah.t7KjDqFMZLtj8bq&passwor
 * Remove programs from UserModel
 * Prevent app crash when Mandrill fails
 * Resend confirmation endpoint
+* Always return standard json
+	- Error code
+	- Error message
+	- Error data (original error)

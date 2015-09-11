@@ -9,7 +9,15 @@
  */
 module.exports = function( req, res, next ) {
 	return OAuthService.authorise()( req, res, function( err, data ) {
-		if( err ) return res.forbidden( 'You are not permitted to perform this action.' );
+		if( err ) {
+			return res.forbidden(
+				new ErrorService({
+					code: 'NOT_AUTHENTICATED',
+					message: 'You are not logged in',
+					data: err
+				})
+			);
+		}
 		return next();
 	});
 };

@@ -3,13 +3,13 @@ var model = module.exports;
 
 model.getAccessToken = function ( bearerToken, callback ) {
 	AccessToken.findOne(
-		{ accessToken: bearerToken }, 
+		{ accessToken: bearerToken },
 		function( err, token ) {
-			if( err ) { 
-				return callback( err ) 
+			if( err ) {
+				return callback( err )
 			};
-			if( !token ) { 
-				return callback( true );
+			if( !token ) {
+				return callback( true, 'Token not found' );
 			};
 			return callback( null, {
 				accessToken: token.accessToken,
@@ -25,8 +25,8 @@ model.getClient = function ( clientId, clientSecret, callback ) {
 		{ clientId: clientId },
 		function( err, client ) {
 			if( err ) { callback( err ) };
-			if( !client ) { 
-				callback( 'No client was found' );
+			if( !client ) {
+				callback( true, 'No client was found' );
 			} else {
 				callback( null, {
 					clientId: client.clientId,
@@ -40,7 +40,7 @@ model.getClient = function ( clientId, clientSecret, callback ) {
 var authorizedClientIds = [ 'abc1', 'def2' ];
 model.grantTypeAllowed = function ( clientId, grantType, callback ) {
 	if (grantType === 'password') {
-		return callback( false, 
+		return callback( false,
 			authorizedClientIds.indexOf(clientId.toLowerCase()) >= 0
 		);
 	}
@@ -69,7 +69,7 @@ model.getUser = function ( email, password, callback ) {
 					}
 				});
 			} else {
-				callback( true );
+				callback( true, 'User not found' );
 			}
 		}
 	);
@@ -91,8 +91,8 @@ model.saveRefreshToken = function ( token, clientId, expires, user, callback ) {
 };
 
 model.getRefreshToken = function ( refreshToken, callback ) {
-	RefreshToken.findOne( 
-		{ refreshToken: refreshToken }, 
+	RefreshToken.findOne(
+		{ refreshToken: refreshToken },
 		function( err, token ) {
 			callback( err, token )
 		}
