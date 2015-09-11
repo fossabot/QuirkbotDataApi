@@ -10,33 +10,11 @@
  */
 
 module.exports.bootstrap = function( cb ) {
-	createUser( 
-		{
-			email: 'foo@asd.com',
-			nickname: 'foo',
-			password: 'foo',
-			birthdate: '1989-04-14',
-			country: 'br'
-		},
-		function() {
-			createUser( 
-				{
-					email: 'bar@asd.com',
-					nickname: 'bar',
-					password: 'bar',
-					birthdate: '2009-04-14',
-					country: 'se'
-				},
-				function() {
-					createClient( cb );
-				}
-			);
-		}
-	);
+	createClient( cb );
 };
 
 var createUser = function( userData, cb ) {
-	User.findOne( 
+	User.findOne(
 		{ email: userData.email },
 		function( err, user ) {
 			if( err ) {
@@ -57,8 +35,8 @@ var createUser = function( userData, cb ) {
 };
 
 var createClient = function( cb ) {
-	Client.findOne( 
-		{ clientId: 'abc1' }, 
+	Client.findOne(
+		{ clientId: 'abc1' },
 		function( err, client ) {
 			if( err ) {
 				console.log( err );

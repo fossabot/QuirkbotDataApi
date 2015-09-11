@@ -21,7 +21,7 @@ module.exports = {
 			return uniqueNickname;
 		}
 	},
-
+	
 	attributes: {
 		email: {
 			type: 'email',
@@ -92,8 +92,7 @@ module.exports = {
 		});
 	},
 	afterCreate: function( user, next ) {
-		EmailService.sendConfirmation( user, function( err, response ) {
-			next( err, response );
-		});
+		EmailService.sendConfirmation( user, function( err, response ) {});
+		next();
 	}
 };

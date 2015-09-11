@@ -1,35 +1,19 @@
-var mandrill = require('mandrill-api/mandrill')
-var mandrillClient = new mandrill.Mandrill( process.env.MANDRILL_API_KEY || '' );
+var mandrill = require('node-mandrill/mandrill')( process.env.MANDRILL_API_KEY || '' );
 
 var defaultMessage = {
-	"html": "<p></p>",
-	"text": "",
-	"subject": "Oh, hey! What's up?",
-	"from_email": "no-reply@quirkbot.com",
-	"from_name": "Quirkbot",
-	"to": [{
-			"email": "info@quirkbot.com",
-			"name": "Quirkbot",
-			"type": "to"
-		}],
-	"headers": {
-		"Reply-To": "info@quirkbot.com"
-	},
-	"inline_css": true
-};
+	to: [{email: 'git@jimsc.com', name: 'Jim Rubenstein'}],
+	from_email: 'you@domain.com',
+	subject: "Hey, what's up?",
+	text: "Hello, I sent this message using mandrill."
+}
 
 var send = function( message, cb ) {
-	mandrillClient.messages.send(
-		{ 
-			message: message || defaultMessage,
-			async: true
-		}, 
-		function( response ) {
-			if ( response.reject_reason ) {
-				cb( response.reject_reason, response );
-			} else {
-				cb( null, response );
-			}
+	mandrill(
+		'/messages/send',
+		{ message: message || defaultMessage },
+		function( err, response ) {
+				if( err ) { console.log( 'error', err ) };
+				cb( err, response );
 		}
 	);
 }

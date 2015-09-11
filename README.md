@@ -118,16 +118,15 @@ token=%242a%2410%24glx8hwKty7Bhy.BKymO5euZoLmNS4NQmZxuah.t7KjDqFMZLtj8bq&passwor
 
 ## TODO:
 
-* HTTPS
+* Resend confirmation endpoint
 * Generate token for confirmation
 * Policies return correct error codes
 * Always return standard json
 	- Error code
 	- Error message
 	- Error data (original error)
-* Prevent app crash when Mandrill fails
-* Resend confirmation endpoint
 * Different confirmation email if you are a kid (email to parents)
+* HTTPS
 * Soft delete (?)
 * Add all logic to services
 * Logging
@@ -154,3 +153,4 @@ token=%242a%2410%24glx8hwKty7Bhy.BKymO5euZoLmNS4NQmZxuah.t7KjDqFMZLtj8bq&passwor
 	(take Program.version as reference)
 	(Always use current logged user as the author - Program before create)
 * Remove programs from UserModel
+* Prevent app crash when Mandrill fails
