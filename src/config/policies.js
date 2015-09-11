@@ -40,6 +40,7 @@ module.exports.policies = {
     'requestReset': true,
     'resetPassword': true,
     'confirm': true,
+    'resendConfirmation': true
   }
 
 };

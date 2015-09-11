@@ -118,7 +118,6 @@ token=%242a%2410%24glx8hwKty7Bhy.BKymO5euZoLmNS4NQmZxuah.t7KjDqFMZLtj8bq&passwor
 
 ## TODO:
 
-* Resend confirmation endpoint
 * Generate token for confirmation
 * Policies return correct error codes
 * Always return standard json
@@ -154,3 +153,4 @@ token=%242a%2410%24glx8hwKty7Bhy.BKymO5euZoLmNS4NQmZxuah.t7KjDqFMZLtj8bq&passwor
 	(Always use current logged user as the author - Program before create)
 * Remove programs from UserModel
 * Prevent app crash when Mandrill fails
+* Resend confirmation endpoint

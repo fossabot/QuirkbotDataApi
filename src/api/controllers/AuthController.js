@@ -9,11 +9,33 @@ var bcrypt = require( 'bcrypt' );
 
 module.exports = {
 
-  _config: {
-      rest: false
-  },
-
+	_config: {
+		rest: false
+	},
+	// Get an access token or refresh it. Check README.md to know
+	// the parameters
   token: OAuthService.grant(),
+	// Resend account authentication request by email
+	resendConfirmation: function( req, res ) {
+		if( !req.body || !req.body.email ) {
+			return res.serverError( 'Email not found' );
+		}
+		User.findOne(
+			{ email: req.body.email },
+			function( err, user ) {
+				if( err || !user ) {
+					res.serverError( 'Email not found' );
+				}
+				EmailService.sendConfirmation( user, function( err ) {
+					if( err ) {
+						console.log( 'error', err, user );
+					}
+				});
+				res.ok( 'Email sent' );
+			}
+		)
+	},
+	// Confirm user account.
   confirm: function( req, res ) {
 		User.update( { id: req.user.id }, { confirmedEmail: true } )
 		.exec( function( err, user ) {
@@ -23,6 +45,7 @@ module.exports = {
 			res.json( user );
 		});
 	},
+	// Send a reset password link to user
 	resetRequest: function( req, res ) {
 		if( !req.body || !req.body.email ) {
 			return res.serverError( 'Email not found' );
@@ -51,6 +74,8 @@ module.exports = {
 		);
 
 	},
+	// Update user password to a new one without need to
+	// authenticate.
 	reset: function( req, res ) {
 		if( !req.body || !req.body.token || !req.body.password ) {
 			return res.serverError( 'Could not reset password' );
