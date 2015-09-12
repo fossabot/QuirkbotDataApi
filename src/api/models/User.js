@@ -21,7 +21,7 @@ module.exports = {
 			return uniqueNickname;
 		}
 	},
-	
+
 	attributes: {
 		email: {
 			type: 'email',
@@ -39,8 +39,7 @@ module.exports = {
 		},
 		country: {
 			type: 'string',
-			enum: [ 'se', 'cn', 'br', 'us', 'uk' ],
-			required: true
+			enum: [ 'se', 'cn', 'br', 'us', 'uk' ]
 		},
 		gender: {
 			type: 'string',
