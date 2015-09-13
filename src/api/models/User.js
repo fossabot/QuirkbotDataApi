@@ -47,7 +47,7 @@ module.exports = {
 			enum: [ 'm', 'f', 'noneof' ]
 		},
 		nickname: {
-			type: 'string',
+			type: 'alphanumericdashed',
 			size: 30,
 			uniqueNickname: true,
 			required: true
