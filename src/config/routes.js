@@ -22,6 +22,9 @@
 
 module.exports.routes = {
 
-  '/oauth/token': 'AuthController.token'
-  
+  '/oauth/token': 'AuthController.token',
+  '/': {
+      view: 'index'
+  }
+
 };

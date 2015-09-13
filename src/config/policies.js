@@ -19,6 +19,7 @@
 module.exports.policies = {
 
   '*': 'isAuthenticated',
+  '/': true,
   UserController: {
     'find': 'isAuthenticated',
     'findOne': 'isAuthenticated',
