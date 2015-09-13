@@ -136,6 +136,8 @@ token=%242a%2410%24glx8hwKty7Bhy.BKymO5euZoLmNS4NQmZxuah.t7KjDqFMZLtj8bq&passwor
 
 ## TODO:
 
+* Restrict nickname to letters, numbers, _ and - (alphanumericdashed)
+* Set Models to follow strictly the schema
 * Logging
 * Validate body request on ProgramController update
 * Generate token for confirmation
