@@ -47,7 +47,7 @@ module.exports = {
 		},
 		nickname: {
 			type: 'string',
-			size: 45,
+			size: 30,
 			uniqueNickname: true,
 			required: true
 		},
