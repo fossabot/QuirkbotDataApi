@@ -12,9 +12,8 @@ module.exports = {
 	_config: {
 		rest: false
 	},
-	// Get an access token or refresh it. Check README.md to know
-	// the parameters
-  token: function( req, res ) {
+	// Get an access token or refresh it. Check README.md to know the parameters
+	token: function( req, res ) {
 		OAuthService.grant()( req, res, function( err, data ) {
 			if( err ) {
 				return res.forbidden(
@@ -60,7 +59,7 @@ module.exports = {
 		)
 	},
 	// Confirm user account.
-  confirm: function( req, res ) {
+	confirm: function( req, res ) {
 		User.update( { id: req.user.id }, { confirmedEmail: true } )
 		.exec( function( err, user ) {
 			if( err ) {
