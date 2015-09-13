@@ -66,6 +66,9 @@ module.exports = {
 		if( !value.password ) {
 			return next( { err: [ 'Password not found' ] } );
 		}
+		if( value.confirmedEmail ) {
+			delete value.confirmedEmail;
+		}
 		bcrypt.hash(
 			value.password,
 			10,
