@@ -136,42 +136,4 @@ token=%242a%2410%24glx8hwKty7Bhy.BKymO5euZoLmNS4NQmZxuah.t7KjDqFMZLtj8bq&passwor
 
 ## TODO:
 
-* Restrict nickname to letters, numbers, _ and - (alphanumericdashed)
-* Set Models to follow strictly the schema
-* Logging
-* Validate body request on ProgramController update
-* Generate token for confirmation
-* Different confirmation email if you are a kid (email to parents)
-* HTTPS
-* Soft delete (?)
-* Add all logic to services
-* Policies return correct error codes
-* Client ID/Secret the right way
-* API endpoint tests
-
-## Done!
-
-* Setup CORS properly (done)
-* Docker (done)
-* OAuth or HTTP authentication to crossdomain authentication (https://github.com/lucj/sails-oauth2-api)
-* Implement `/api/policies/sessionAuth.js` with the OAuth methods.
-* Refresh OAuth Token
-* Implement `/api/policies/isYou.js` for preventing users to alter other users.
-* Implement `/api/policies/isAuthor.js` for preventing users access to other users programs.
-* Transactional emails
-* Account confirmation
-* Password reset
-* Unique nicknames
-* Smart create or update: Always post an update and if doesn't exist, create:
-	1. check id
-	2. if doesn't exist, ignore id and create a new one
-	3. if exists, check if it's the client is the newest update else return the server's version
-	(take Program.version as reference)
-	(Always use current logged user as the author - Program before create)
-* Remove programs from UserModel
-* Prevent app crash when Mandrill fails
-* Resend confirmation endpoint
-* Always return standard json
-	- Error code
-	- Error message
-	- Error data (original error)
+[Issue tracker](https://bitbucket.org/murilopolese/quirkbot-api/issues?&sort=-priority)
