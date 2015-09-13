@@ -10,7 +10,6 @@
     "ejs": "~0.8.4",
     "include-all": "~0.1.3",
     "node-mandrill": "^1.0.1",
-    "nodemon": "^1.4.1",
     "oauth2-server": "^2.4.1",
     "passport": "^0.2.2",
     "passport-local": "^1.0.0",
