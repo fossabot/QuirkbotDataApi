@@ -56,9 +56,9 @@ model.saveAccessToken = function ( accessToken, clientId, expires, user, callbac
 		callback( err, token );
 	});
 }
-model.getUser = function ( email, password, callback ) {
+model.getUser = function ( nickname, password, callback ) {
 	User.findOne(
-		{ email: email },
+		{ nickname: nickname },
 		function( err, user ) {
 			if( user ) {
 				bcrypt.compare( password, user.password, function ( err, success ) {
