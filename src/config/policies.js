@@ -31,9 +31,11 @@ module.exports.policies = {
   ProgramController: {
     'find': 'isAuthenticated',
     'findOne': 'isAuthenticated',
-    'create': [ 'isAuthenticated', 'isConfirmed' ],
-    'createOrUpdate': [ 'isAuthenticated', 'isConfirmed' ],
-    'update': [ 'isAuthenticated', 'isConfirmed', 'isAuthor' ],
+    'create': [ 'isAuthenticated', 'isConfirmed', 'overrideAuthor' ],
+    'update': [
+        'isAuthenticated', 'isConfirmed', 'isAuthor',
+        'checkProgramVersion', 'overrideAuthor'
+    ],
     'destroy': [ 'isAuthenticated', 'isConfirmed', 'isAuthor' ]
   },
 
