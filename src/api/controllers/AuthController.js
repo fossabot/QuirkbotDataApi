@@ -60,7 +60,7 @@ module.exports = {
 	},
 	// Confirm user account.
 	confirm: function( req, res ) {
-		User.update( { id: req.user.id }, { confirmedEmail: true } )
+		User.update( { id: req.params.id }, { confirmedEmail: true } )
 		.exec( function( err, user ) {
 			if( err ) {
 				return res.serverError(
