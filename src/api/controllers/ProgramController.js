@@ -6,128 +6,77 @@
  */
 
 module.exports = {
-	// if id
-	// 	find program
-	// 		if program exists
-	// 			if is author
-	// 				if server version is newer
-	// 					return server program
-	// 				else server version is older
-	// 					update program
-	// 					return updated program
-	// 			else is not author
-	// 				clear id
-	// 				set author to logged user
-	// 				create program
-	// 				return created program
-	// 		else program does not exist
-	// 			clear id
-	// 			set author to logged user
-	// 			create program
-	// 			return created program
-	// else no id
-	// 	set author to logged user
-	// 	create program
-	// 	return created program
 
-	create: function( req, res ) {
-		if( !req.body ) {
-			res.badRequest(
-				new ErrorService({
-					code: 'PROGRAM_NOT_FOUND',
-					message: 'Program id not provided',
-					data: req.body
-				})
-			)
-		}
+	create: function( req, res, next ) {
+		req.body = req.body || {};
+		req.body.author = req.user.id;
+		next();
+	},
+
+	createOrUpdate: function( req, res ) {
 		if( req.body.id ) {
-			// Find the program
-			Program.findOne( { id: req.body.id }, function( err, program ) {
-				if( err ) {
-					return res.serverError(
-						new ErrorService({
-							code: 'PROGRAM_NOT_FOUND',
-							message: 'Error searching program',
-							data: err
-						})
-					);
-				}
-				// If program exists
+			console.log( 'Id passed' );
+			Program.findOne( { id: req.body.id } )
+			.exec( function( err, program ) {
+				// Program found
 				if( program ) {
-					// If you are the author
-					if( program.author.id == req.user.id ) {
-						// If server program is newer
+					console.log( 'Program found' );
+					if( program.author == req.user.id ) {
+						// You are the author
+						console.log( 'You are the author' );
 						if( program.version > req.body.version ) {
-							// Return server program
+							// Server program is newer
+							console.log( 'Server program is newer' );
+							console.log( '-------------------' );
 							res.ok( program );
 						} else {
-							// If posted program is newer, update it
+							// Posted program is newer
+							console.log( 'Posted program is newer' );
+							delete req.body.id;
 							Program.update(
 								{ id: program.id },
 								req.body
 							).exec( function( err, updatedProgram ) {
-								if( err ) {
-									return res.serverError(
-										new ErrorService({
-											code: 'PROGRAM_UPDATE',
-											message: 'Error updating program',
-											data: err
-										})
-									);
-								}
-								return res.ok( updatedProgram );
-							});
+								console.log( 'Program updated' );
+								console.log( '-------------------' );
+								res.ok( updatedProgram );
+							})
 						}
 					} else {
-						// If you are not the author
+						// You are not the author, fork it
+						console.log( 'You are not the author' );
 						delete program.id;
 						program.author = req.user.id;
-						Program.create( program ).exec( function( err, newProgram ) {
-							if( err ) {
-								return res.serverError(
-									new ErrorService({
-										code: 'PROGRAM_CREATE',
-										message: 'Error creating program',
-										data: err
-									})
-								);
-							}
-							res.ok( newProgram );
-						})
+						Program.create( program.toJSON() )
+						.exec( function( err, forkedProgram ) {
+							console.log( 'forked program created' );
+							console.log( '-------------------' );
+							res.ok( forkedProgram );
+						});
 					}
 				} else {
-					// If program doesn't exist
+					// Program not found, create program from scratch
+					console.log( 'program not found, creating from scratch' );
 					delete req.body.id;
 					req.body.author = req.user.id;
-					Program.create( req.body ).exec( function( err, newProgram ) {
-						if( err ) {
-							return res.serverError(
-								new ErrorService({
-									code: 'PROGRAM_CREATE',
-									message: 'Error creating program',
-									data: err
-								})
-							);
-						}
+					Program.create( req.body )
+					.exec( function( err, newProgram ) {
+						console.log( 'new program created' );
+						console.log( '-------------------' );
 						res.ok( newProgram );
-					})
+					});
 				}
 			})
 		} else {
-			// No program id provided
-			program.author = req.user.id;
-			Program.create( program ).exec( function( err, newProgram ) {
-				if( err ) {
-					return res.serverError(
-						new ErrorService({
-							code: 'PROGRAM_CREATE',
-							message: 'Error creating program',
-							data: err
-						})
-					);
-				}
+			// No program id passed, create program from scratch
+			console.log( 'No id passed, creating program from scratch' );
+			req.body.author = req.user.id;
+			Program.create( req.body )
+			.exec( function( err, newProgram ) {
+				console.log( 'new program created' );
+				console.log( '-------------------' );
 				res.ok( newProgram );
-			})
+			});
 		}
 	}
 

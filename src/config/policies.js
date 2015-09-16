@@ -32,8 +32,7 @@ module.exports.policies = {
     'find': 'isAuthenticated',
     'findOne': 'isAuthenticated',
     'create': [ 'isAuthenticated', 'isConfirmed' ],
-		// Update is a PUT request that in theory would never be called since the
-		// app only use POST for both creation and uptade
+    'createOrUpdate': [ 'isAuthenticated', 'isConfirmed' ],
     'update': [ 'isAuthenticated', 'isConfirmed', 'isAuthor' ],
     'destroy': [ 'isAuthenticated', 'isConfirmed', 'isAuthor' ]
   },
