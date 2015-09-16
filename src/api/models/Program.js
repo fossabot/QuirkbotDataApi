@@ -24,10 +24,12 @@ module.exports = {
 			required: true,
 			defaultsTo: 0
 		},
+		original: {
+			type: 'string'
+		},
 		apiVersion: {
 			type: 'string',
 			defaultsTo: '0'
 		}
 	}
 };
-
