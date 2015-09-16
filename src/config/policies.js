@@ -26,6 +26,7 @@ module.exports.policies = {
     'create': true,
     'update': [ 'isAuthenticated', 'isYou' ],
     'destroy': [ 'isAuthenticated', 'isYou' ],
+    'me': 'isAuthenticated'
   },
 
   ProgramController: {
