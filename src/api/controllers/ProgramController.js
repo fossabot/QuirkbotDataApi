@@ -18,6 +18,15 @@ module.exports = {
 			console.log( 'Id passed' );
 			Program.findOne( { id: req.body.id } )
 			.exec( function( err, program ) {
+				if( err ) {
+					res.serverError(
+						new ErrorService({
+							code: 'PROGRAM_NOT_FOUND',
+							message: 'Problem finding the program',
+							data: err
+						})
+					)
+				}
 				// Program found
 				if( program ) {
 					console.log( 'Program found' );
@@ -37,6 +46,15 @@ module.exports = {
 								{ id: program.id },
 								req.body
 							).exec( function( err, updatedProgram ) {
+								if( err ) {
+									res.serverError(
+										new ErrorService({
+											code: 'PROGRAM_UPDATE',
+											message: 'Problem updating the program',
+											data: err
+										})
+									)
+								}
 								console.log( 'Program updated' );
 								console.log( '-------------------' );
 								res.ok( updatedProgram );
@@ -45,10 +63,19 @@ module.exports = {
 					} else {
 						// You are not the author, fork it
 						console.log( 'You are not the author' );
-						delete program.id;
-						program.author = req.user.id;
-						Program.create( program.toJSON() )
+						delete req.body.id;
+						req.body.author = req.user.id;
+						Program.create( req.body )
 						.exec( function( err, forkedProgram ) {
+							if( err ) {
+								res.serverError(
+									new ErrorService({
+										code: 'PROGRAM_CREATE',
+										message: 'Problem creating the program fork',
+										data: err
+									})
+								)
+							}
 							console.log( 'forked program created' );
 							console.log( '-------------------' );
 							res.ok( forkedProgram );
@@ -61,6 +88,15 @@ module.exports = {
 					req.body.author = req.user.id;
 					Program.create( req.body )
 					.exec( function( err, newProgram ) {
+						if( err ) {
+							res.serverError(
+								new ErrorService({
+									code: 'PROGRAM_CREATE',
+									message: 'Problem creating the program from scratch',
+									data: err
+								})
+							)
+						}
 						console.log( 'new program created' );
 						console.log( '-------------------' );
 						res.ok( newProgram );
@@ -73,6 +109,15 @@ module.exports = {
 			req.body.author = req.user.id;
 			Program.create( req.body )
 			.exec( function( err, newProgram ) {
+				if( err ) {
+					res.serverError(
+						new ErrorService({
+							code: 'PROGRAM_CREATE',
+							message: 'Problem creating the program from scratch',
+							data: err
+						})
+					)
+				}
 				console.log( 'new program created' );
 				console.log( '-------------------' );
 				res.ok( newProgram );
