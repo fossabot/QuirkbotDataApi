@@ -14,6 +14,8 @@ module.exports = {
 	},
 
 	createOrUpdate: function( req, res ) {
+		// Always override the posted author with the current user id
+		req.body.author = req.user.id;
 		if( req.body.id ) {
 			console.log( 'Id passed' );
 			Program.findOne( { id: req.body.id } )
@@ -64,7 +66,6 @@ module.exports = {
 						// You are not the author, fork it
 						console.log( 'You are not the author' );
 						delete req.body.id;
-						req.body.author = req.user.id;
 						Program.create( req.body )
 						.exec( function( err, forkedProgram ) {
 							if( err ) {
@@ -85,7 +86,6 @@ module.exports = {
 					// Program not found, create program from scratch
 					console.log( 'program not found, creating from scratch' );
 					delete req.body.id;
-					req.body.author = req.user.id;
 					Program.create( req.body )
 					.exec( function( err, newProgram ) {
 						if( err ) {
@@ -106,7 +106,6 @@ module.exports = {
 		} else {
 			// No program id passed, create program from scratch
 			console.log( 'No id passed, creating program from scratch' );
-			req.body.author = req.user.id;
 			Program.create( req.body )
 			.exec( function( err, newProgram ) {
 				if( err ) {
