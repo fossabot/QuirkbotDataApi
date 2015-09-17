@@ -12,7 +12,7 @@ module.exports = function( req, res, next ) {
     return Program.findOne( { id: req.params.id } )
     // populate( 'author' )
     .exec( function( err, program ) {
-        if( program.version > req.body.version ) {
+        if( program.version >= req.body.version ) {
             return res.ok( program );
         } else {
             return next();
