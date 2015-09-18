@@ -1,11 +1,10 @@
 web:
     build: .
-    command: ./node_modules/nodemon/bin/nodemon.js app.js
     ports:
         - "8080:1337"
     volumes:
-        - ./dataserver/src/api:/src/api
-        - ./dataserver/src/config:/src/config
+        - ./src/api:/src/api
+        - ./src/config:/src/config
     links:
         - mongodb:mongodb
     environment:
