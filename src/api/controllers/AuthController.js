@@ -51,7 +51,7 @@ module.exports = {
 				}
 				EmailService.sendConfirmation( user, function( err ) {
 					if( err ) {
-						console.log( 'error', err, user );
+						sails.log( 'error', err, user );
 					}
 				});
 				res.ok( 'Email sent' );
@@ -112,7 +112,7 @@ module.exports = {
 					}
 					EmailService.sendReset( user, request, function( err, data ) {
 						if( err ) {
-							console.log( 'error', err, data );
+							sails.log( 'error', err, data );
 						}
 					})
 					return res.ok( 'Email sent' );

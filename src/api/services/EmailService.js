@@ -12,7 +12,7 @@ var send = function( message, cb ) {
 		'/messages/send',
 		{ message: message || defaultMessage },
 		function( err, response ) {
-				if( err ) { console.log( 'error', err ) };
+				if( err ) { sails.log( 'error', err ) };
 				cb( err, response );
 		}
 	);

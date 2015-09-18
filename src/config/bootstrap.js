@@ -18,15 +18,15 @@ var createUser = function( userData, cb ) {
 		{ email: userData.email },
 		function( err, user ) {
 			if( err ) {
-				console.log( err );
+				sails.log( err );
 			}
 			if( user ) {
-				console.log( 'default user already exists' );
+				sails.log( 'default user already exists' );
 				cb();
 			} else {
 				User.create( userData )
 				.exec( function( err, user ) {
-					console.log( 'USER CREATED', user );
+					sails.log( 'USER CREATED', user );
 					cb();
 				})
 			}

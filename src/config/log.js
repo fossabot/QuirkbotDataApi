@@ -10,20 +10,26 @@
  * http://sailsjs.org/#!/documentation/concepts/Logging
  */
 
+var Winston = require('winston');
+var Loggly = require('winston-loggly');
+
 module.exports.log = {
+	prefixes: {},
+	level: 'verbose',
+	custom: new Winston.Logger({
+		transports: [
 
-  /***************************************************************************
-  *                                                                          *
-  * Valid `level` configs: i.e. the minimum log level to capture with        *
-  * sails.log.*()                                                            *
-  *                                                                          *
-  * The order of precedence for log levels from lowest to highest is:        *
-  * silly, verbose, info, debug, warn, error                                 *
-  *                                                                          *
-  * You may also set the level to "silent" to suppress all logs.             *
-  *                                                                          *
-  ***************************************************************************/
+			new Winston.transports.Loggly({
+				level: 'debug',
+				subdomain: process.env.LOGGLY_SUBDOMAIN,
+				inputToken: process.env.LOGGLY_TOKEN
+			}),
 
-  // level: 'info'
+      new Winston.transports.Console({
+        level: 'silly'
+      })
+
+		]
+	})
 
 };
