@@ -5,6 +5,7 @@ web:
   volumes:
     - ./src/api:/src/api
     - ./src/config:/src/config
+    - ./src/app.js:/src/app.js
   links:
     - mongodb:mongodb
   environment:
@@ -14,6 +15,9 @@ web:
     MONGO_URL: mongodb://mongodb:27017/sails
     LOGGLY_SUBDOMAIN: murilopolese
     LOGGLY_TOKEN: f32b0847-e85e-4e11-a1c4-82b8828cb26d
+    NEW_RELIC_APP_NAME: 'local'
+    NEW_RELIC_KEY: '07794783d1400eef6222857287e1d51a7d7e9f63'
+    NEW_RELIC_LEVEL: 'trace'
 mongodb:
   image: mongo
   ports:
