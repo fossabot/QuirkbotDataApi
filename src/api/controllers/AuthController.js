@@ -61,7 +61,7 @@ module.exports = {
 	// Confirm user account.
 	confirm: function( req, res ) {
 		User.update( { id: req.params.id }, { confirmedEmail: true } )
-		.exec( function( err, user ) {
+		.exec( function( err, users ) {
 			if( err ) {
 				return res.serverError(
 					new ErrorService({
@@ -71,7 +71,16 @@ module.exports = {
 					})
 				);
 			}
-			res.json( user );
+			if( users.length == 0 ) {
+				return res.serverError(
+					new ErrorService({
+						code: 'USER_UPDATE',
+						message: 'User not found',
+						data: err
+					})
+				);
+			}
+			res.json( users[ 0 ] );
 		});
 	},
 	// Send a reset password link to user
