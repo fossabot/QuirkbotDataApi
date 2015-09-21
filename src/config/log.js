@@ -20,13 +20,15 @@ module.exports.log = {
 		transports: [
 
 			new Winston.transports.Loggly({
-				level: 'debug',
+				level: process.env.LOGGLY_LEVEL,
+				tags: [ process.env.LOGGLY_TAG ],
 				subdomain: process.env.LOGGLY_SUBDOMAIN,
-				inputToken: process.env.LOGGLY_TOKEN
+				inputToken: process.env.LOGGLY_TOKEN,
+				json: true
 			}),
 
       new Winston.transports.Console({
-        level: 'silly'
+        level: process.env.CONSOLE_LEVEL
       })
 
 		]
