@@ -1,10 +1,10 @@
 var mandrill = require('node-mandrill/mandrill')( process.env.MANDRILL_API_KEY || '' );
 
 var defaultMessage = {
-	to: [{email: 'git@jimsc.com', name: 'Jim Rubenstein'}],
-	from_email: 'you@domain.com',
+	to: [{email: 'hello@quirkbot.com', name: 'Quirkbot'}],
+	from_email: 'hello@quirkbot.com',
 	subject: "Hey, what's up?",
-	text: "Hello, I sent this message using mandrill."
+	text: "Hello, I sent this message using the Quirkbot API."
 }
 
 var send = function( message, cb ) {
