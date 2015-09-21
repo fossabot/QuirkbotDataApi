@@ -25,8 +25,8 @@ module.exports = {
 	attributes: {
 		email: {
 			type: 'email',
-			unique: true,
-			uniqueEmail: true,
+			//unique: true,
+			//uniqueEmail: true,
 			required: true
 		},
 		password: {

@@ -25,9 +25,9 @@ var sendConfirmation = function( user, cb ) {
 		type: "to"
 	}];
 
-	message.subject = "We need your confirmation";
-	message.text = "Hey! Please confirm your account by entering the following link: " + process.env.APP_CONFIRMATION_URL + user.id;
-	message.html = "<h1>Hey!</h1><p>Please confirm your email at " + process.env.APP_CONFIRMATION_URL + user.id + "</p>";
+	message.subject = "Quirkbot CODE verification";
+	message.text = "Hey "+user.nickname+"! Welcome to Quirkbot CODE! Please verify your account by entering the link: " + process.env.APP_CONFIRMATION_URL + user.id;
+	message.html = "<h1>Hey "+user.nickname+", welcome to Quirkbot CODE!</h1><p>Please verify your account by entering the link: " + process.env.APP_CONFIRMATION_URL + user.id + "</p>";
 
 	send( message, cb );
 }
