@@ -6,7 +6,6 @@
 */
 
 var bcrypt = require( 'bcrypt' );
-var uniqueEmail = false;
 var uniqueNickname = false;
 
 module.exports = {
@@ -14,9 +13,6 @@ module.exports = {
 	* Custom validation types
 	*/
 	types: {
-		uniqueEmail: function( value ) {
-			return uniqueEmail;
-		},
 		uniqueNickname: function( value ) {
 			return uniqueNickname;
 		}
@@ -25,8 +21,6 @@ module.exports = {
 	attributes: {
 		email: {
 			type: 'email',
-			//unique: true,
-			//uniqueEmail: true,
 			required: true
 		},
 		password: {
