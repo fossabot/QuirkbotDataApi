@@ -38,8 +38,8 @@ var sendReset = function( user, request, cb ) {
 		email: user.email,
 		type: "to"
 	}];
-	message.text = "Access " + process.env.APP_RESET_PASSWORD_URL + request.token + " to reset your password. If you did not request your password, ignore this email.";
-	message.html = "<h1>Hey!</h1><p>Access " + process.env.APP_RESET_PASSWORD_URL + request.token + " to reset your password. If you did not request your password, ignore this email.</p>";
+	message.text = "Access " + process.env.APP_RESET_URL + request.token + " to reset your password. If you did not request your password, ignore this email.";
+	message.html = "<h1>Hey!</h1><p>Access " + process.env.APP_RESET_URL + request.token + " to reset your password. If you did not request your password, ignore this email.</p>";
 
 	send( message, cb );
 }

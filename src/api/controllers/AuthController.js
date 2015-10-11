@@ -90,7 +90,7 @@ module.exports = {
 				new ErrorService({
 					code: 'USER_NOT_FOUND',
 					message: 'User not found',
-					data: err
+					data: req.body
 				})
 			);
 		}
@@ -124,7 +124,14 @@ module.exports = {
 							sails.log( 'error', err, data );
 						}
 					})
-					return res.ok( 'Email sent' );
+					return res.ok({
+						code: '',
+						message: 'Email sent',
+						data: {
+							email: user.email,
+							nickname: user.nickname
+						}
+					});
 				});
 			}
 		);
