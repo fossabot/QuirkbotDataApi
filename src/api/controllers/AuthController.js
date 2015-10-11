@@ -128,7 +128,6 @@ module.exports = {
 						code: '',
 						message: 'Email sent',
 						data: {
-							email: user.email,
 							nickname: user.nickname
 						}
 					});
