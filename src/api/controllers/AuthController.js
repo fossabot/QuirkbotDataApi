@@ -28,17 +28,17 @@ module.exports = {
 	},
 	// Resend account authentication request by email
 	resendConfirmation: function( req, res ) {
-		if( !req.body || !req.body.email ) {
+		if( !req.body || !req.body.nickname ) {
 			return res.badRequest(
 				new ErrorService({
-					code: 'EMAIL_NOT_FOUND',
-					message: 'Email not found',
+					code: 'USER_NOT_FOUND',
+					message: 'User not found',
 					data: err
 				})
 			);
 		}
 		User.findOne(
-			{ email: req.body.email },
+			{ nickname: req.body.nickname },
 			function( err, user ) {
 				if( err || !user ) {
 					res.serverError(
@@ -85,18 +85,18 @@ module.exports = {
 	},
 	// Send a reset password link to user
 	resetRequest: function( req, res ) {
-		if( !req.body || !req.body.email ) {
+		if( !req.body || !req.body.nickname ) {
 			return res.badRequest(
 				new ErrorService({
-					code: 'EMAIL_NOT_FOUND',
-					message: 'Email not found',
+					code: 'USER_NOT_FOUND',
+					message: 'User not found',
 					data: err
 				})
 			);
 		}
 
 		User.findOne(
-			{ email: req.body.email },
+			{ nickname: req.body.nickname },
 			function( err, user ) {
 				if( err || !user ) {
 					return res.serverError(
@@ -154,8 +154,7 @@ module.exports = {
 					);
 				}
 				bcrypt.hash(
-					req.body.password,
-					10,
+					req.body.password, 10,
 					function passwordEncrypted( err, encryptedPassword ) {
 						if( err ) {
 							return res.serverError(

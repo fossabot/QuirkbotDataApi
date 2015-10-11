@@ -66,7 +66,7 @@ Host: docker:8080
 Cache-Control: no-cache
 Content-Type: application/x-www-form-urlencoded
 
-email=murilopolese%40gmail.com
+nickname=murilopolese
 ```
 2. This email should contain an url to an IDE screen with a token. On this screen the user fill the new password and submit with the received token to the api:
 ```
@@ -76,6 +76,18 @@ Cache-Control: no-cache
 Content-Type: application/x-www-form-urlencoded
 
 token=%242a%2410%24glx8hwKty7Bhy.BKymO5euZoLmNS4NQmZxuah.t7KjDqFMZLtj8bq&password=secret
+```
+
+## Resend confirmation
+
+1. Request an email to confirm the user:
+```
+POST /auth/resendConfirmation HTTP/1.1
+Host: docker:8080
+Cache-Control: no-cache
+Content-Type: application/x-www-form-urlencoded
+
+nickname=murilopolese
 ```
 
 ## List of error codes:
