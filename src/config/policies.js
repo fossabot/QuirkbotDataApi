@@ -41,11 +41,11 @@ module.exports.policies = {
   },
 
   AuthController: {
-    'token': true,
-    'requestReset': true,
-    'resetPassword': true,
     'confirm': true,
-    'resendConfirmation': true
+    'resendConfirmation': true,
+    'token': true,
+    'resetRequest': true,
+    'reset': true
   }
 
 };
