@@ -22,7 +22,7 @@ module.exports.policies = {
   '/': true,
   UserController: {
     'find': true,
-    'findOne': 'isAuthenticated',
+    'findOne': true,
     'create': true,
     'update': [ 'isAuthenticated', 'isYou' ],
     'destroy': [ 'isAuthenticated', 'isYou' ],
