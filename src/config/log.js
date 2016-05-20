@@ -13,25 +13,34 @@
 var Winston = require('winston');
 var Loggly = require('winston-loggly');
 
-module.exports.log = {
+var log = {
 	prefixes: {},
-	level: 'verbose',
-	custom: new Winston.Logger({
+	level: process.env.LOG_LEVEL || 'info'
+};
+
+if(
+	process.env.LOGGLY_SUBDOMAIN
+	&& process.env.LOGGLY_LEVEL
+	&& process.env.LOGGLY_TAG
+	&& process.env.LOGGLY_TOKEN
+) {
+	log.custom = new Winston.Logger({
 		transports: [
 
 			new Winston.transports.Loggly({
-				level: process.env.LOGGLY_LEVEL,
-				tags: [ process.env.LOGGLY_TAG ],
-				subdomain: process.env.LOGGLY_SUBDOMAIN,
-				inputToken: process.env.LOGGLY_TOKEN,
+				level: process.env.LOGGLY_LEVEL || '',
+				tags: [ process.env.LOGGLY_TAG || '' ],
+				subdomain: process.env.LOGGLY_SUBDOMAIN || '',
+				inputToken: process.env.LOGGLY_TOKEN || '',
 				json: true
 			}),
 
-      new Winston.transports.Console({
-        level: process.env.CONSOLE_LEVEL
-      })
+			new Winston.transports.Console({
+				level: process.env.CONSOLE_LEVEL
+			})
 
 		]
 	})
+}
 
-};
+module.exports.log = log;
