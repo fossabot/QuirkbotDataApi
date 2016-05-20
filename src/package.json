@@ -30,5 +30,8 @@
   },
   "main": "app.js",
   "author": "Murilo Polese <murilopolese@gmail.com>",
-  "license": ""
+  "license": "",
+  "devDependencies": {
+    "dotenv": "^2.0.0"
+  }
 }
