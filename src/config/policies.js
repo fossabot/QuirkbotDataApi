@@ -21,7 +21,7 @@ module.exports.policies = {
   '*': 'isAuthenticated',
   '/': true,
   UserController: {
-    'find': 'isAuthenticated',
+    'find': true,
     'findOne': 'isAuthenticated',
     'create': true,
     'update': [ 'isAuthenticated', 'isYou' ],
@@ -30,8 +30,8 @@ module.exports.policies = {
   },
 
   ProgramController: {
-    'find': 'isAuthenticated',
-    'findOne': 'isAuthenticated',
+    'find': true,
+    'findOne': true,
     'create': [ 'isAuthenticated', 'isConfirmed', 'overrideAuthor' ],
     'update': [
         'isAuthenticated', 'isConfirmed', 'isAuthor',
