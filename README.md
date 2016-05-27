@@ -1,6 +1,6 @@
 # Quirkbot API
 
-a dockerized [Sails](http://sailsjs.org) application
+A dockerized [Sails](http://sailsjs.org) backend for Quirkbot's CODE; programming environment.
 
 ## Setup:
 

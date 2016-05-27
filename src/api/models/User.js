@@ -21,7 +21,8 @@ module.exports = {
 	attributes: {
 		email: {
 			type: 'email',
-			required: true
+			required: true,
+			protected: true
 		},
 		password: {
 			type: 'string',
@@ -30,15 +31,18 @@ module.exports = {
 		},
 		birthdate: {
 			type: 'date',
-			required: true
+			required: true,
+			protected: true
 		},
 		country: {
 			type: 'string',
-			enum: [ 'se', 'cn', 'br', 'us', 'uk' ]
+			enum: [ 'se', 'cn', 'br', 'us', 'uk' ],
+			protected: true
 		},
 		gender: {
 			type: 'string',
-			enum: [ 'm', 'f', 'noneof' ]
+			enum: [ 'm', 'f', 'noneof' ],
+			protected: true
 		},
 		nickname: {
 			type: 'alphanumericdashed',
