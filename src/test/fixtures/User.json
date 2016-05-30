@@ -1,0 +1,22 @@
+[
+	{
+		"nickname": "janedoe",
+		"birthdate": "1990-01-01 00:00:00",
+		"email": "janedoe@quirkbot.com",
+		"confirmedEmail": true,
+		"password": "123456",
+		"country": "se",
+		"gender": "f",
+		"region": "world"
+	},
+	{
+		"nickname": "johndoe",
+		"birthdate": "1991-01-01 00:00:00",
+		"email": "johndoe@quirkbot.com",
+		"confirmedEmail": false,
+		"password": "abcdef",
+		"country": "se",
+		"gender": "m",
+		"region": "world"
+	}
+]

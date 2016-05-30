@@ -58,14 +58,23 @@ module.exports = {
 		confirmedEmail: {
 			type: 'boolean',
 			defaultsTo: false
-		}
+		},
+		toJSON: function() {
+			var obj = this.toObject();
+
+			delete obj.id;
+			delete obj.email;
+			delete obj.password;
+			delete obj.country;
+			delete obj.gender;
+			delete obj.birthdate;
+
+			return obj;
+    }
 	},
 	beforeCreate: function( value, next ) {
 		if( !value.password ) {
 			return next( { err: [ 'Password not found' ] } );
-		}
-		if( value.confirmedEmail ) {
-			delete value.confirmedEmail;
 		}
 		bcrypt.hash(
 			value.password,

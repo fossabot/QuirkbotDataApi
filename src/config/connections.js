@@ -24,11 +24,12 @@ module.exports.connections = {
   mongodb: {
     adapter: 'sails-mongo',
     url: process.env.MONGO_URL
-    // host: process.env.MONGO_HOST,
-    // port: process.env.MONGO_PORT
-    // user: 'username',
-    // password: 'password',
-    // database: 'your_mongo_db_name_here'
+  },
+  test: {
+		adapter: 'sails-disk'
+  },
+  testlocal: {
+		adapter: 'sails-disk'
   }
 
 };

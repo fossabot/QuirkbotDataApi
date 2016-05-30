@@ -27,6 +27,11 @@ module.exports = {
                     })
                 )
             }
+						user.toJSON = function() {
+							var obj = this.toObject();
+							delete obj.password;
+							return obj;
+						}
             res.ok( user );
         })
     }
