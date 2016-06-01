@@ -15,7 +15,7 @@ module.exports = function( req, res, next ) {
 		new ErrorService({
 			code: 'NOT_YOURSELF',
 			message: 'You are not permitted to perform this action',
-			data: err
+			data: undefined
 		})
 
 	);
