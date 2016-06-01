@@ -1,7 +1,8 @@
 [
 	{
+		"id": "abc123",
 		"nickname": "janedoe",
-		"birthdate": "1990-01-01 00:00:00",
+		"birthdate": "1989-12-31T23:00:00.000Z",
 		"email": "janedoe@quirkbot.com",
 		"confirmedEmail": true,
 		"password": "123456",
@@ -10,8 +11,9 @@
 		"region": "world"
 	},
 	{
+		"id": "abc124",
 		"nickname": "johndoe",
-		"birthdate": "1991-01-01 00:00:00",
+		"birthdate": "1990-01-01T00:00:00.000Z",
 		"email": "johndoe@quirkbot.com",
 		"confirmedEmail": false,
 		"password": "abcdef",

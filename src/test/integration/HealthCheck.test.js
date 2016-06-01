@@ -1,4 +1,4 @@
-var request = require( 'supertest' );
+var request = require( 'supertest-as-promised' );
 
 describe( 'HealthCheck', function() {
 

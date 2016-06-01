@@ -1,5 +1,5 @@
-var request = require( 'supertest' );
-var requestToken = require( './requestToken' );
+var request = require( 'supertest-as-promised' );
+var requestToken = require( '../utilities/requestToken' );
 
 describe( 'AuthController', function() {
 	it( 'should get 403 posting to /auth/token with incorrect fields', function ( done ) {
