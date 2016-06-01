@@ -32,12 +32,12 @@ module.exports.policies = {
   ProgramController: {
     'find': true,
     'findOne': true,
-    'create': [ 'isAuthenticated', 'isConfirmed', 'overrideAuthor' ],
+    'create': [ 'isAuthenticated', 'overrideAuthor' ],
     'update': [
-        'isAuthenticated', 'isConfirmed', 'isAuthor',
+        'isAuthenticated', 'isAuthor',
         'checkProgramVersion', 'overrideAuthor'
     ],
-    'destroy': [ 'isAuthenticated', 'isConfirmed', 'isAuthor' ]
+    'destroy': [ 'isAuthenticated', 'isAuthor' ]
   },
 
   AuthController: {
