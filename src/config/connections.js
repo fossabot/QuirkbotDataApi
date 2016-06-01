@@ -26,9 +26,8 @@ module.exports.connections = {
     url: process.env.MONGO_URL
   },
   test: {
-		adapter: 'sails-disk'
-  },
-  testlocal: {
+		// adapter: 'sails-mongo',
+		// url: process.env.TEST_MONGO_URL
 		adapter: 'sails-disk'
   }
 
