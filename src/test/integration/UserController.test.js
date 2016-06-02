@@ -244,4 +244,81 @@ describe( 'UserController', function() {
 			})
 	});
 
+	it( 'should get 403 trying to update another user', function( done ) {
+		var token;
+		requestToken()
+			.then( function ( res ) {
+				token = res.body.access_token;
+				return request( sails.hooks.http.app )
+					.put( '/user/' + users[1].id )
+					.set( 'Content-Type', 'application/json; charset=utf-8' )
+					.set( 'Authorization', 'Bearer ' + token )
+					.expect( 403 )
+			})
+			.then( function ( res ) {
+				done();
+			})
+			.catch( function ( err ) {
+				done( err );
+			})
+	});
+
+	it( 'should get 403 trying to delete another user', function( done ) {
+		var token;
+		requestToken()
+			.then( function ( res ) {
+				token = res.body.access_token;
+				return request( sails.hooks.http.app )
+					.del( '/user/' + users[1].id )
+					.set( 'Content-Type', 'application/json; charset=utf-8' )
+					.set( 'Authorization', 'Bearer ' + token )
+					.expect( 403 )
+			})
+			.then( function ( res ) {
+				done();
+			})
+			.catch( function ( err ) {
+				done( err );
+			})
+	});
+
+	it( 'should get 403 trying to use an access token of a deleted user', function( done ) {
+		var token;
+		requestToken()
+			.then( function( res ) {
+				token = res.body.access_token;
+				return request( sails.hooks.http.app )
+					.del( '/user/' + user.id )
+					.set( 'Content-Type', 'application/json; charset=utf-8' )
+					.set( 'Authorization', 'Bearer ' + token )
+					.expect( 200 );
+			})
+			.then( function( res ) {
+				return request( sails.hooks.http.app )
+					.put( '/user/' + user.id )
+					.set( 'Content-Type', 'application/json; charset=utf-8' )
+					.set( 'Authorization', 'Bearer ' + token )
+					.expect( 404 );
+			})
+			.then( function ( res ) {
+				done();
+			})
+			.catch( function ( err ) {
+				done( err );
+			})
+	})
+
+	it( 'should get 400 by posting to /user with an existing "nickname"', function ( done ) {
+		request( sails.hooks.http.app )
+			.post( '/user' )
+			.send({
+				email: 'ladyjane@quirkbot.com',
+				nickname: 'janedoe',
+				birthdate: new Date(),
+				password: 123123
+			})
+			.expect( 400 )
+			.end( done );
+	});
+
 });
