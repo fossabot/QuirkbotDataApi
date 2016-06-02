@@ -13,27 +13,6 @@ module.exports.bootstrap = function( cb ) {
 	createClient( cb );
 };
 
-var createUser = function( userData, cb ) {
-	User.findOne(
-		{ email: userData.email },
-		function( err, user ) {
-			if( err ) {
-				sails.log( err );
-			}
-			if( user ) {
-				sails.log( 'default user already exists' );
-				cb();
-			} else {
-				User.create( userData )
-				.exec( function( err, user ) {
-					sails.log( 'USER CREATED', user );
-					cb();
-				})
-			}
-		}
-	)
-};
-
 var createClient = function( cb ) {
 	Client.findOne(
 		{ clientId: 'abc1' },
@@ -50,7 +29,7 @@ var createClient = function( cb ) {
 					clientSecret: 'asd'
 				})
 				.exec( function( err, client ) {
-					console.log( 'CLIENT CREATED', client );
+					//console.log( 'CLIENT CREATED', client );
 					cb();
 				});
 			}

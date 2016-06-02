@@ -3,6 +3,6 @@ module.exports = {
 		refreshToken: 'string',
 		clientId: 'string',
 		userId: 'string',
-		expires: Date
+		expires: 'date'
 	}
 }

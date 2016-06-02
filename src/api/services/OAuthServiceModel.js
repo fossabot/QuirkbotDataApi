@@ -97,7 +97,12 @@ model.saveRefreshToken = function ( token, clientId, expires, user, callback ) {
 
 model.getRefreshToken = function ( refreshToken, callback ) {
 	RefreshToken.findOne(
-		{ refreshToken: refreshToken },
+		{
+			refreshToken: refreshToken,
+			expires: {
+				'greaterThan': new Date()
+			}
+		},
 		function( err, token ) {
 			callback( err, token )
 		}

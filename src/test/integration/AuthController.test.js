@@ -26,12 +26,13 @@ describe( 'AuthController', function() {
 		var token;
 		requestToken()
 			.then( function( res ) {
-				token = res.body.accessToken;
-				return AccessToken.update( token, {
-					expires: new Date( '1989-04-14 00:00:00' )
-				});
+				token = res.body.access_token;
+				return AccessToken.update(
+					{ accessToken: token },
+					{ expires: new Date( '1989-04-14 00:00:00' ) }
+				);
 			})
-			.then( function( res ) {
+			.then( function() {
 				return request( sails.hooks.http.app )
 					.get( '/user/me' )
 					.set( 'Content-Type', 'application/json; charset=utf-8' )
@@ -76,5 +77,33 @@ describe( 'AuthController', function() {
 			});
 	})
 
+	it( 'should get 403 using an expired refresh token', function ( done ) {
+		var refreshToken;
+		requestToken()
+			.then( function( res ) {
+				refreshToken = res.body.accessToken;
+				return RefreshToken.update(
+					{ refreshToken: refreshToken },
+					{	expires: new Date( '1989-04-14 00:00:00' ) }
+				);
+			})
+			.then( function( res ) {
+				return request( sails.hooks.http.app )
+					.post( '/oauth/token' )
+					.set( 'Content-Type', 'application/x-www-form-urlencoded; charset=utf-8' )
+					.set( 'Authorization', 'Basic YWJjMTphc2Q=' )
+					.send({
+						grant_type: 'refresh_token',
+						refresh_token: refreshToken
+					})
+					.expect( 403 )
+			})
+			.then( function( res ) {
+				done();
+			})
+			.catch( function( err ) {
+				done( err );
+			})
+	})
 
 });
