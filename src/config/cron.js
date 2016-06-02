@@ -12,7 +12,7 @@ module.exports.cron = {
 				console.log( 'Cleaning access tokens', err, res );
 			})
     }
-  }
+  },
   cleanRefresh: {
     schedule: '* * */1 * *',
     onTick: function () {
