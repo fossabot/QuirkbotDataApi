@@ -1,4 +1,4 @@
---timeout 15s
+--timeout 5s
 --reporter nyan
 --ui bdd
 --slow 200

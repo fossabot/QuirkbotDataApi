@@ -49,7 +49,6 @@ Content-Type: application/x-www-form-urlencoded
 ```
 POST /auth/token HTTP/1.1
 Host: docker:8080
-Content-Type: application/x-www-form-urlencoded; text/html; charset=UTF-8
 Authorization: Basic YWJjMTphc2Q=
 Cache-Control: no-cache
 Content-Type: application/x-www-form-urlencoded

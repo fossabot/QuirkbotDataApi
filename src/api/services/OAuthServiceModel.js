@@ -3,7 +3,12 @@ var model = module.exports;
 
 model.getAccessToken = function ( bearerToken, callback ) {
 	AccessToken.findOne(
-		{ accessToken: bearerToken },
+		{
+			accessToken: bearerToken,
+			expires: {
+				'greaterThan': new Date()
+			}
+		},
 		function( err, token ) {
 			if( err ) {
 				return callback( err )

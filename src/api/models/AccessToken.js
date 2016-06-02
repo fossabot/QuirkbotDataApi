@@ -2,7 +2,7 @@ module.exports = {
 	attributes: {
 		accessToken: 'string',
 		clientId: 'string',
-		expires: Date,
+		expires: 'datetime',
 		userId: 'string'
 	}
 }
