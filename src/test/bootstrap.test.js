@@ -11,30 +11,33 @@ beforeEach( function( done ) {
 
 before( function( done ) {
 
-  sails.lift(
+	sails.lift(
 		{
 			models: {
-	      connection: 'test',
-	      migrate: 'drop'
-	    }
+				connection: 'test',
+				migrate: 'drop'
+			},
+			log: {
+				level: "silent"
+			}
 		},
 		function( err, server ) {
 			if( sails.config.models.connection != 'test' ) {
 				return done( "Can't run tests if it's not on test environment!" );;
 			}
-	    if ( err ) {
+			if ( err ) {
 				return done( err );
 			}
 
 			console.log( 'Adding fixtures' );
 			populate( done );
-	  }
+		}
 	);
 
 });
 
 after( function( done ) {
 	console.log( 'Cleaning fixtures' );
-  // Cleaning fixtures
+	// Cleaning fixtures
 	sails.lower( done );
 });
