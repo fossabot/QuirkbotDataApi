@@ -1,6 +1,6 @@
 [
 	{
-		"id": "abc123",
+		"id": "1",
 		"nickname": "janedoe",
 		"birthdate": "1989-12-31T23:00:00.000Z",
 		"email": "janedoe@quirkbot.com",
@@ -11,7 +11,7 @@
 		"region": "world"
 	},
 	{
-		"id": "abc124",
+		"id": "2",
 		"nickname": "johndoe",
 		"birthdate": "1990-01-01T00:00:00.000Z",
 		"email": "johndoe@quirkbot.com",

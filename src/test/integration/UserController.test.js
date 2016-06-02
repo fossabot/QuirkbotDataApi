@@ -206,13 +206,11 @@ describe( 'UserController', function() {
 			.end( done );
 	});
 
-/*
 	it( 'should get 200 trying to update your own user', function ( done ) {
 		var token;
 		requestToken()
 			.then( function ( res ) {
 				token = res.body.access_token;
-				console.log( 'token', token, user.id );
 				return request( sails.hooks.http.app )
 					.put( '/user/' + user.id )
 					.set( 'Content-Type', 'application/json; charset=utf-8' )
@@ -246,17 +244,4 @@ describe( 'UserController', function() {
 			})
 	});
 
-	it( 'should get 403 trying to update another user', function ( done ) {
-		var token;
-		requestToken()
-			.then( function( res ) {
-				token = res.body.access_token;
-				return getUser( 'johndoe' )
-			})
-			.then( function( res ) {
-				console.log( res.body );
-				done();
-			})
-	})
-	*/
 });
