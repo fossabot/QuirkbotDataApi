@@ -1,3 +1,10 @@
+# 0.1.17
+
+- Behaviour test for API endpoints as seen in `/src/test/SUMMARY.md`
+- OAuth in debug mode only in development environment
+- Removed `isConfirmed` policy to create programs
+- Cron to clean expired access tokens as seen in `/src/config/cron.js`
+
 # 0.1.16
 
 Consider that as the initial version for Quirkbot's API. It contain the following features:
