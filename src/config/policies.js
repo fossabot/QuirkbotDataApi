@@ -41,7 +41,7 @@ module.exports.policies = {
   },
 
   AuthController: {
-    'confirm': [ 'isAuthenticated', 'isYou' ],
+    'confirm': true,
     'resendConfirmation': [ 'isAuthenticated', 'isYou' ],
     'token': true,
     'resetRequest': true,

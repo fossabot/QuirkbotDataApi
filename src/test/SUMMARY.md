@@ -34,8 +34,6 @@
 - should get a new access token using a refresh token
 - should expire refresh token after is expiration date
 - should set confirmedEmail to true by accessing /auth/confirm/?id=id
-- should get 403 trying to confirm an email without an access token
-- should get 403 trying to confirm an email with an user that is not you
 - should generate a reset password request by accessing /auth/resetRequest passing your nickname
 - should deactivate the reset password request by accessing /auth/reset passing a token and password
 - should modify user's password by accessing /auth/reset passing a token and password
@@ -53,3 +51,7 @@
 - should get a list of all programs on GET /program
 - should get a list of programs from a specific user on /program?author=id
 - should get all programs on GET /program
+
+## Abandoned tests
+- should get 403 trying to confirm an email without an access token
+- should get 403 trying to confirm an email with an user that is not you

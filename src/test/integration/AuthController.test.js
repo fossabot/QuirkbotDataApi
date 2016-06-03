@@ -127,43 +127,6 @@ describe( 'AuthController', function() {
 			});
 	});
 
-	it( 'should get 403 trying to confirm an email without an access token', function ( done ) {
-		var token;
-		requestToken()
-			.then( function( res ) {
-				token = res.body.access_token;
-				return request( sails.hooks.http.app )
-					.get( '/auth/confirm/' + user.id )
-					.set( 'Content-Type', 'application/x-www-form-urlencoded; charset=utf-8' )
-					.expect( 403 )
-			})
-			.then( function( res ) {
-				done();
-			})
-			.catch( function( err ) {
-				done( err );
-			});
-	});
-
-	it( 'should get 403 trying to confirm an email with an user that is not you', function ( done ) {
-		var token;
-		requestToken()
-			.then( function( res ) {
-				token = res.body.access_token;
-				return request( sails.hooks.http.app )
-					.post( '/auth/confirm/' + users[ 1 ].id )
-					.set( 'Content-Type', 'application/x-www-form-urlencoded; charset=utf-8' )
-					.set( 'Authorization', 'Bearer ' + token )
-					.expect( 403 )
-			})
-			.then( function( res ) {
-				done();
-			})
-			.catch( function( err ) {
-				done( err );
-			});
-	});
-
 	it( 'should generate a reset password request by accessing /auth/resetRequest passing your nickname', function ( done ) {
 		request( sails.hooks.http.app )
 			.post( '/auth/resetRequest' )
