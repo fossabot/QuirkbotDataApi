@@ -60,6 +60,15 @@ module.exports = {
 	},
 	// Confirm user account.
 	confirm: function( req, res ) {
+		if( !req.params.id ) {
+			return res.badRequest(
+				new ErrorService({
+					code: 'USER_UPDATE',
+					message: 'You must specify an ID',
+					data: req.params
+				})
+			);
+		}
 		User.update( { id: req.params.id }, { confirmedEmail: true } )
 		.exec( function( err, users ) {
 			if( err ) {
@@ -72,7 +81,7 @@ module.exports = {
 				);
 			}
 			if( users.length == 0 ) {
-				return res.serverError(
+				return res.notFound(
 					new ErrorService({
 						code: 'USER_UPDATE',
 						message: 'User not found',
@@ -88,8 +97,8 @@ module.exports = {
 		if( !req.body || !req.body.nickname ) {
 			return res.badRequest(
 				new ErrorService({
-					code: 'USER_NOT_FOUND',
-					message: 'User not found',
+					code: 'RESET_PASSWORD_REQUEST',
+					message: 'You must specify a nickname',
 					data: req.body
 				})
 			);
@@ -98,8 +107,17 @@ module.exports = {
 		User.findOne(
 			{ nickname: req.body.nickname },
 			function( err, user ) {
-				if( err || !user ) {
+				if( err ) {
 					return res.serverError(
+						new ErrorService({
+							code: 'RESET_PASSWORD_REQUEST',
+							message: 'Error requesting password reset',
+							data: err
+						})
+					);
+				}
+				if( !user ) {
+					return res.notFound(
 						new ErrorService({
 							code: 'USER_NOT_FOUND',
 							message: 'User not found',
@@ -119,15 +137,18 @@ module.exports = {
 							})
 						);
 					}
-					EmailService.sendReset( user, request, function( err, data ) {
-						if( err ) {
-							sails.log( 'error', err, data );
-						}
-					})
+					if( process.env.MANDRILL_API_KEY ) {
+						EmailService.sendReset( user, request, function( err, data ) {
+							if( err ) {
+								sails.log( 'error', err, data );
+							}
+						})
+					}
 					return res.ok({
 						code: '',
 						message: 'Email sent',
 						data: {
+							requestId: request.id,
 							nickname: user.nickname
 						}
 					});

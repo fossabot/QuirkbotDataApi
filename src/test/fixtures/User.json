@@ -4,7 +4,7 @@
 		"nickname": "janedoe",
 		"birthdate": "1989-12-31T23:00:00.000Z",
 		"email": "janedoe@quirkbot.com",
-		"confirmedEmail": true,
+		"confirmedEmail": false,
 		"password": "123456",
 		"country": "se",
 		"gender": "f",

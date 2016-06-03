@@ -1,6 +1,8 @@
 var request = require( 'supertest-as-promised' );
 var expect = require( 'chai' ).expect;
 var requestToken = require( '../utilities/requestToken' );
+var users = require( '../fixtures/User' );
+var user = users[ 0 ];
 
 describe( 'AuthController', function() {
 
@@ -14,10 +16,7 @@ describe( 'AuthController', function() {
   });
 
   it( 'should get 200 posting to /auth/token with all correct fields and headers', function ( done ) {
-    	requestToken({
-				username: 'janedoe',
-				password: '123456'
-			})
+    	requestToken()
       .expect( 200 )
 			.end( done )
   });
@@ -105,5 +104,96 @@ describe( 'AuthController', function() {
 				done( err );
 			})
 	})
+
+	it( 'should set confirmedEmail to true by accessing /auth/confirm/id', function ( done ) {
+		var token;
+		requestToken()
+			.then( function( res ) {
+				token = res.body.access_token;
+				return request( sails.hooks.http.app )
+					.post( '/auth/confirm/' + user.id )
+					.set( 'Content-Type', 'application/x-www-form-urlencoded; charset=utf-8' )
+					.set( 'Authorization', 'Bearer ' + token )
+					.expect( 200 )
+					.expect( function( res ) {
+						expect( res.body.confirmedEmail ).to.be.true;
+					});
+			})
+			.then( function( res ) {
+				done();
+			})
+			.catch( function( err ) {
+				done( err );
+			});
+	});
+
+	it( 'should get 403 trying to confirm an email without an access token', function ( done ) {
+		var token;
+		requestToken()
+			.then( function( res ) {
+				token = res.body.access_token;
+				return request( sails.hooks.http.app )
+					.get( '/auth/confirm/' + user.id )
+					.set( 'Content-Type', 'application/x-www-form-urlencoded; charset=utf-8' )
+					.expect( 403 )
+			})
+			.then( function( res ) {
+				done();
+			})
+			.catch( function( err ) {
+				done( err );
+			});
+	});
+
+	it( 'should get 403 trying to confirm an email with an user that is not you', function ( done ) {
+		var token;
+		requestToken()
+			.then( function( res ) {
+				token = res.body.access_token;
+				return request( sails.hooks.http.app )
+					.post( '/auth/confirm/' + users[ 1 ].id )
+					.set( 'Content-Type', 'application/x-www-form-urlencoded; charset=utf-8' )
+					.set( 'Authorization', 'Bearer ' + token )
+					.expect( 403 )
+			})
+			.then( function( res ) {
+				done();
+			})
+			.catch( function( err ) {
+				done( err );
+			});
+	});
+
+	it( 'should generate a reset password request by accessing /auth/resetRequest passing your nickname', function ( done ) {
+		request( sails.hooks.http.app )
+			.post( '/auth/resetRequest' )
+			.set( 'Content-Type', 'application/json; charset=utf-8' )
+			.send({
+				nickname: user.nickname
+			})
+			.then( function( res ) {
+				return ResetRequest.findOne( res.body.data.requestId )
+					.exec( function( err, request ) {
+						expect( err ).to.not.be.ok;
+						expect( request ).to.be.ok;
+						expect( request.active ).to.be.true;
+					})
+			})
+			.then( function( res ) {
+				done();
+			})
+			.catch( function( err ) {
+				done( err );
+			})
+
+	})
+
+	// it( 'should deactivate the reset password request by accessing /auth/reset passing a token and password', function ( done ) {
+	// 	done( new Error( 'not implemented' ) );
+	// });
+	//
+	// it( 'should modify user\'s password by accessing /auth/reset passing a token and password', function ( done ) {
+	// 	done( new Error( 'not implemented' ) );
+	// });
 
 });
