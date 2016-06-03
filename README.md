@@ -77,6 +77,10 @@ Content-Type: application/x-www-form-urlencoded
 token=%242a%2410%24glx8hwKty7Bhy.BKymO5euZoLmNS4NQmZxuah.t7KjDqFMZLtj8bq&password=secret
 ```
 
+## Confirm user
+
+**TODO**
+
 ## Resend confirmation
 
 1. Request an email to confirm the user:
