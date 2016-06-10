@@ -1,4 +1,4 @@
-# 0.2.0
+# 0.2.1
 
 - Rearranged files to account for the new EB configuration (without dockerfile)
 
