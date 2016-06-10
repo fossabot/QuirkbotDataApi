@@ -1,3 +1,8 @@
 .DS_Store
 src/.env
 *.log
+
+# Elastic Beanstalk Files
+src/.elasticbeanstalk/*
+!src/.elasticbeanstalk/*.cfg.yml
+!src/.elasticbeanstalk/*.global.yml
