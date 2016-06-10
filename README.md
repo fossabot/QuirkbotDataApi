@@ -4,7 +4,32 @@ A dockerized [Sails](http://sailsjs.org) backend for Quirkbot's CODE; programmin
 
 ## Setup:
 
-Check `SETUP.md`.
+### Running locally:
+
+1. Clone the repo: `git clone https://murilopolese@bitbucket.org/murilopolese/quirkbot-api.git`
+2. Browse to the cloned repo folder
+3. Create or fill the `.env` file with required environment variables.
+4. Run `npm install`
+5. Run `npm start`
+
+### Environment variables
+
+**Required**
+MANDRILL_API_KEY
+APP_CONFIRMATION_URL
+APP_RESET_URL
+MONGO_URL
+
+**Optional**
+LOGGLY_SUBDOMAIN
+LOGGLY_TOKEN
+LOGGLY_TAG
+LOGGLY_LEVEL
+NEW_RELIC_KEY
+NEW_RELIC_APP_NAME
+NEW_RELIC_LEVEL
+LOG_LEVEL
+
 
 ## Available endpoints
 
