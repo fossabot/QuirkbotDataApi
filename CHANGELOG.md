@@ -1,3 +1,7 @@
+# 0.2.0
+
+- Rearranged files to account for the new EB configuration (without dockerfile)
+
 # 0.1.19
 
 - Added back "id" field to user requests.
