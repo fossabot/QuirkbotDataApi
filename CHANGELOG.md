@@ -1,3 +1,7 @@
+# 0.1.18
+
+- Added back "id" field to user requests.
+
 # 0.1.17
 
 - Behaviour test for API endpoints as seen in `/src/test/SUMMARY.md`

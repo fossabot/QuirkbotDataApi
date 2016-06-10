@@ -25,18 +25,18 @@ describe( 'UserController', function() {
 			.end( done )
 	});
 
-	it( 'should see only "nickname", "region" and "confirmedEmail" on listed users at /user', function ( done ) {
+	it( 'should see only "id", "nickname", "region" and "confirmedEmail" on listed users at /user', function ( done ) {
 		request( sails.hooks.http.app )
 			.get( '/user' )
 			.expect(function( res ) {
 				res.body.forEach( function( user ) {
-					expect( user.id ).to.not.exist;
 					expect( user.password ).to.not.exist;
 					expect( user.email ).to.not.exist;
 					expect( user.email ).to.not.exist;
 					expect( user.gender ).to.not.exist;
 					expect( user.birthdate ).to.not.exist;
 
+					expect( user.id ).to.exist;
 					expect( user.nickname ).to.exist;
 					expect( user.region ).to.exist;
 					expect( user.confirmedEmail ).to.exist;
