@@ -1,4 +1,4 @@
-var bcrypt = require( 'bcrypt' );
+var bcrypt = require( 'bcrypt-nodejs' );
 var model = module.exports;
 
 model.getAccessToken = function ( bearerToken, callback ) {

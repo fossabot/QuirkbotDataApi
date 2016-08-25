@@ -5,7 +5,7 @@
  * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
  */
 var passport = require( 'passport' );
-var bcrypt = require( 'bcrypt' );
+var bcrypt = require( 'bcrypt-nodejs' );
 
 module.exports = {
 
@@ -182,6 +182,7 @@ module.exports = {
 				}
 				bcrypt.hash(
 					req.body.password, 10,
+					function() { /*progress*/ },
 					function passwordEncrypted( err, encryptedPassword ) {
 						if( err ) {
 							return res.serverError(
