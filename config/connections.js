@@ -30,7 +30,7 @@ module.exports.connections = {
   },
   lite: {
 		adapter: 'sails-disk',
-		filePath: '../api_db/'
+		filePath: process.env.DB_URL || '../api_db/'
   }
 
 };
