@@ -1,3 +1,8 @@
+# 0.2.2
+- Adding DB_URL for "lite" connection
+- Changing the package name for "quirkbot-api"
+- Improve readme
+
 # 0.2.1
 
 - Rearranged files to account for the new EB configuration (without dockerfile)
