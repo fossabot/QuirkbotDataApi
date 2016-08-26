@@ -1,3 +1,12 @@
+# 0.2.2
+
+- Create "lite" environment
+- Adding DB_URL for "lite" connection
+- Changing the package name for "quirkbot-api"
+- Improve readme
+- Changed bcrypt module to bcrypt-nodejs
+- NPM shrink wrap
+
 # 0.2.1
 
 - Rearranged files to account for the new EB configuration (without dockerfile)
