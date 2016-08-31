@@ -10,7 +10,13 @@
  */
 
 module.exports.bootstrap = function( cb ) {
-	createClient( cb );
+	createClient( function() {
+		if( process.env.NODE_ENV == 'lite' ) {
+			createUser( cb )
+		} else {
+			cb();
+		}
+	});
 };
 
 var createClient = function( cb ) {
@@ -28,11 +34,19 @@ var createClient = function( cb ) {
 					clientId: 'abc1',
 					clientSecret: 'asd'
 				})
-				.exec( function( err, client ) {
-					//console.log( 'CLIENT CREATED', client );
-					cb();
-				});
+				.exec( cb );
 			}
 		}
 	)
+}
+
+var createUser = function( cb ) {
+	User.create({
+		email: process.env.LITE_EMAIL,
+		password: process.env.LITE_PASSWORD,
+		birthdate: new Date('2014-01-01'),
+		nickname: process.env.LITE_NICKNAME,
+		confirmedEmail: true
+	})
+	.exec( cb )
 }
