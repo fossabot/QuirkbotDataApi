@@ -25,6 +25,7 @@ var createClient = function( cb ) {
 		function( err, client ) {
 			if( err ) {
 				console.log( err );
+				cb( err );
 			}
 			if( client ) {
 				console.log( 'default client already exists' );
@@ -41,12 +42,26 @@ var createClient = function( cb ) {
 }
 
 var createUser = function( cb ) {
-	User.create({
-		email: process.env.LITE_EMAIL,
-		password: process.env.LITE_PASSWORD,
-		birthdate: new Date('2014-01-01'),
-		nickname: process.env.LITE_NICKNAME,
-		confirmedEmail: true
-	})
-	.exec( cb )
+	User.findOne(
+		{ nickname: process.env.LITE_NICKNAME },
+		function( err, user ) {
+			if( err ) {
+				console.log( err )
+				cb( err );
+			}
+			if( user ) {
+				console.log( 'default user already exists' );
+				cb()
+			} else {
+				User.create({
+					email: process.env.LITE_EMAIL,
+					password: process.env.LITE_PASSWORD,
+					birthdate: new Date('2014-01-01'),
+					nickname: process.env.LITE_NICKNAME,
+					confirmedEmail: true
+				})
+				.exec( cb )
+			}
+		}
+	)
 }
