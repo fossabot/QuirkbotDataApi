@@ -1,3 +1,7 @@
+# 0.2.3
+
+- Ready for NPM registry
+
 # 0.2.2
 
 - Create "lite" environment

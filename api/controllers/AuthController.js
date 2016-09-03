@@ -181,7 +181,8 @@ module.exports = {
 					);
 				}
 				bcrypt.hash(
-					req.body.password, 10,
+					req.body.password,
+					bcrypt.genSaltSync(10),
 					function() { /*progress*/ },
 					function passwordEncrypted( err, encryptedPassword ) {
 						if( err ) {
