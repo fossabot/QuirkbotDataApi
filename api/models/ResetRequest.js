@@ -1,4 +1,4 @@
-var bcrypt = require( 'bcrypt' );
+var bcrypt = require( 'bcrypt-nodejs' );
 
 module.exports = {
 	attributes: {
@@ -18,7 +18,8 @@ module.exports = {
 		bcrypt.genSalt( 10, function( err, salt ) {
 			bcrypt.hash(
 				'reset_password',
-				salt, 
+				salt,
+				function() { /*progress*/ },
 				function token( err, token ) {
 					if( err ) {
 						return next( err );
