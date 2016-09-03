@@ -78,7 +78,7 @@ module.exports = {
 		}
 		bcrypt.hash(
 			value.password,
-			10,
+			bcrypt.genSaltSync(10),
 			function() { /*progress*/ },
 			function passwordEncrypted( err, encryptedPassword ) {
 				if( err ) return next( err );
