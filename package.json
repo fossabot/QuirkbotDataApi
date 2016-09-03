@@ -1,6 +1,5 @@
 {
-  "name": "quirkbot-api",
-  "private": true,
+  "name": "quirkbot-data-api",
   "version": "0.2.2",
   "description": "Quirkbot's CODE; backend",
   "keywords": [],
@@ -33,7 +32,6 @@
   },
   "main": "app.js",
   "author": "Murilo Polese <murilopolese@gmail.com>",
-  "license": "",
   "devDependencies": {
     "barrels": "^1.6.4",
     "chai": "^3.5.0",
