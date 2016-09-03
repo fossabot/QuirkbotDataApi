@@ -28,10 +28,12 @@
   "scripts": {
     "debug": "node debug app.js",
     "start": "node app.js",
-    "test": "NODE_ENV=test node ./node_modules/mocha/bin/mocha test/bootstrap.test.js test/integration/**/*.test.js"
+    "test": "NODE_ENV=test node ./node_modules/mocha/bin/mocha test/bootstrap.test.js test/integration/**/*.test.js",
+	"deploy:stage" : "git checkout develop && eb deploy quirkbot-api-stage",
+	"deploy:production" : "git checkout master && eb deploy quirkbot-api-production"
   },
   "main": "app.js",
-  "author": "Murilo Polese <murilopolese@gmail.com>",
+  "author": "Quirkbot <hello@quirkbot.com>",
   "devDependencies": {
     "barrels": "^1.6.4",
     "chai": "^3.5.0",
