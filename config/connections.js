@@ -23,14 +23,14 @@ module.exports.connections = {
 
   mongodb: {
     adapter: 'sails-mongo',
-    url: process.env.MONGO_URL
+    url: process.env.API_MONGO_URL || process.env.MONGO_URL
   },
   test: {
-		adapter: 'sails-disk'
+	adapter: 'sails-disk'
   },
   lite: {
-		adapter: 'sails-disk',
-        filePath: process.env.DISK_DB_PATH
+	adapter: 'sails-disk',
+    filePath: process.env.API_DISK_DB_PATH || process.env.DISK_DB_PATH
   }
 
 };
