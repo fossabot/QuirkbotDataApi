@@ -1,6 +1,6 @@
 {
   "name": "quirkbot-data-api",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "description": "Quirkbot's CODE; backend",
   "keywords": [],
   "dependencies": {
@@ -20,7 +20,7 @@
     "sails": "~0.11.0",
     "sails-disk": "~0.10.0",
     "sails-hook-cron": "^2.2.0",
-    "sails-mongo": "^0.11.2",
+    "sails-mongo": "^0.12.1",
     "util": "^0.10.3",
     "winston": "^1.0.1",
     "winston-loggly": "^1.1.0"

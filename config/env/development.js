@@ -19,6 +19,7 @@ module.exports = {
 
   models: {
     connection: 'mongodb'
-  }
+  },
+  port: process.env.API_PORT || process.env.PORT
 
 };
