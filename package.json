@@ -1,6 +1,6 @@
 {
   "name": "quirkbot-data-api",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "description": "Quirkbot's CODE; backend",
   "keywords": [],
   "dependencies": {
