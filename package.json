@@ -29,9 +29,10 @@
     "debug": "node debug app.js",
     "start": "node app.js",
     "test": "NODE_ENV=test node ./node_modules/mocha/bin/mocha test/bootstrap.test.js test/integration/**/*.test.js",
-    "deploy:npm": "sh prepublish.sh && npm publish",
-	"deploy:stage" : "sh prepublish.sh && git checkout develop && eb deploy quirkbot-api-stage",
-	"deploy:production" : "sh prepublish.sh && git checkout master && eb deploy quirkbot-api-production"
+    "shrinkwrap": "mv node_modules original_node_modules && npm install --production && npm shrinkwrap && rm -r node_modules && mv original_node_modules node_modules",
+    "deploy:npm": "npm publish",
+	"deploy:stage" : "git checkout develop && eb deploy quirkbot-api-stage",
+	"deploy:production" : "git checkout master && eb deploy quirkbot-api-production"
   },
   "main": "app.js",
   "author": "Quirkbot <hello@quirkbot.com>",
