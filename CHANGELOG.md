@@ -1,3 +1,11 @@
+# 0.2.7
+
+- Better shrinkwrap process
+
+# 0.2.6
+
+- Process will exit itself in case it is spanwed by a parent and the parent dies.
+
 # 0.2.3
 
 - Ready for NPM registry
