@@ -93,6 +93,7 @@ nbproject
 .node_history
 .env
 *.log
+original_node_modules
 
 
 ################################################
