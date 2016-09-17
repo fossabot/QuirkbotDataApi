@@ -10,8 +10,6 @@
  * http://sailsjs.org/#!/documentation/concepts/Logging
  */
 
-var Winston = require('winston');
-var Loggly = require('winston-loggly');
 
 var log = {
 	prefixes: {},
@@ -24,6 +22,8 @@ if(
 	&& process.env.LOGGLY_TAG
 	&& process.env.LOGGLY_TOKEN
 ) {
+	var Winston = require('winston');
+	var Loggly = require('winston-loggly');
 	log.custom = new Winston.Logger({
 		transports: [
 

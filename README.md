@@ -29,7 +29,7 @@ NEW_RELIC_KEY
 NEW_RELIC_APP_NAME
 NEW_RELIC_LEVEL
 LOG_LEVEL
-DB_URL (if using NODE_ENV="lite")
+API_DISK_DB_PATH (if using NODE_ENV="lite")
 
 
 ## Available endpoints

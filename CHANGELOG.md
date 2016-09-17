@@ -1,3 +1,7 @@
+# 0.2.8
+
+- Removed a few unused dependencies
+
 # 0.2.7
 
 - Better shrinkwrap process

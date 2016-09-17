@@ -13,15 +13,11 @@ module.exports.http = {
 
 
   middleware: {
-    passportInit    : require('passport').initialize(),
 
    order: [
       'startRequestTimer',
       'cookieParser',
       'session',
-      'passportInit',     
-      'passportSession', 
-      'myRequestLogger',
       'bodyParser',
       'handleBodyParserError',
       'compress',
@@ -29,7 +25,6 @@ module.exports.http = {
       'poweredBy',
       'router',
       'www',
-      'favicon',
       '404',
       '500'
     ],
