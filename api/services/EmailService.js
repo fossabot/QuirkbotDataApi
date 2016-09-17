@@ -1,4 +1,7 @@
-var mandrill = require('node-mandrill/mandrill')( process.env.MANDRILL_API_KEY || '' );
+if(process.env.MANDRILL_API_KEY){
+	var mandrill = require('node-mandrill/mandrill')( process.env.MANDRILL_API_KEY || '' );
+}
+
 
 var defaultMessage = {
 	to: [{email: 'no-reply@quirkbot.com', name: 'Quirkbot CODE'}],
@@ -9,6 +12,9 @@ var defaultMessage = {
 }
 
 var send = function( message, cb ) {
+	if(!mandril) {
+		return cb('Mandrill not defined.')
+	}
 	mandrill(
 		'/messages/send',
 		{ message: message || defaultMessage },
