@@ -12,7 +12,7 @@ var defaultMessage = {
 }
 
 var send = function( message, cb ) {
-	if(!mandril) {
+	if(!mandrill) {
 		return cb('Mandrill not defined.')
 	}
 	mandrill(
