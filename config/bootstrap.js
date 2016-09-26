@@ -56,7 +56,7 @@ var createUser = function( cb ) {
 				User.create({
 					email: process.env.LITE_EMAIL,
 					password: process.env.LITE_PASSWORD,
-					birthdate: new Date('2014-01-01'),
+					birthdate: new Date('2000-01-01'),
 					nickname: process.env.LITE_NICKNAME,
 					confirmedEmail: true
 				})
