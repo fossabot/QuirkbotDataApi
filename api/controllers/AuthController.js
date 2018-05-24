@@ -27,17 +27,8 @@ module.exports = {
 	},
 	// Resend account authentication request by email
 	resendConfirmation: function( req, res ) {
-		if( !req.body || !req.body.nickname ) {
-			return res.badRequest(
-				new ErrorService({
-					code: 'USER_NOT_FOUND',
-					message: 'User not found',
-					data: err
-				})
-			);
-		}
 		User.findOne(
-			{ nickname: req.body.nickname },
+			{ id: req.params.id },
 			function( err, user ) {
 				if( err || !user ) {
 					res.serverError(
