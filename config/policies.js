@@ -18,7 +18,7 @@
 
 module.exports.policies = {
 
-  '*': 'isAuthenticated',
+  '*': false,
   '/': true,
   UserController: {
     'find': true,
@@ -26,7 +26,9 @@ module.exports.policies = {
     'create': true,
     'update': [ 'isAuthenticated', 'isYou' ],
     'destroy': [ 'isAuthenticated', 'isYou' ],
-    'me': 'isAuthenticated'
+    'terms': true,
+    'me': 'isAuthenticated',
+    'data': 'isAuthenticated'
   },
 
   ProgramController: {
