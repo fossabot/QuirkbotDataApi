@@ -15,6 +15,9 @@ module.exports = {
 			type: 'string',
 			defaultsTo: 'Undefined'
 		},
+		type: {
+			type: 'string',
+		},
 		tree: {
 			type: 'json',
 			defaultsTo: []
