@@ -15,8 +15,11 @@ module.exports = {
 			type: 'string',
 			defaultsTo: 'Undefined'
 		},
+		type: {
+			type: 'string',
+		},
 		tree: {
-			type: 'array',
+			type: 'json',
 			defaultsTo: []
 		},
 		version: {
