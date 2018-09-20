@@ -1,4 +1,6 @@
 # Quirkbot API
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FQuirkbot%2FQuirkbotDataApi.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2FQuirkbot%2FQuirkbotDataApi?ref=badge_shield)
+
 
 A dockerized [Sails](http://sailsjs.org) backend for Quirkbot's CODE; programming environment.
 
@@ -140,3 +142,7 @@ nickname=murilopolese
 ## TODO:
 
 [Issue tracker](https://bitbucket.org/murilopolese/quirkbot-api/issues?&sort=-priority)
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FQuirkbot%2FQuirkbotDataApi.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2FQuirkbot%2FQuirkbotDataApi?ref=badge_large)
